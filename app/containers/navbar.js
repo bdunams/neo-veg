@@ -1,0 +1,75 @@
+import React, { Component } from 'react';
+
+class SearchBar extends Component{
+  constructor(props){
+    super(props);
+    
+    this.state = { user: '' };
+  }
+  
+  render(){
+    // IF there is a user logged in, return user navbar
+    if(this.props.user){
+      return(
+        <div className="header">
+          <nav className="navbar navbar-expand-lg navbar-light bg-light">
+          <a className="navbar-brand" href="#">Neo Veg</a>
+          <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span className="navbar-toggler-icon"></span>
+          </button>
+
+          <div className="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul className="navbar-nav mr-auto">
+              <li className="nav-item active">
+                <a className="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+              </li>
+              <li className="nav-item">
+                <a className="nav-link" href="#">Plants</a>
+              </li>
+              <li className="nav-item">
+                <a className="nav-link disabled" href="#">Disabled</a>
+              </li>
+            </ul>
+
+            <ul className="nav navbar-nav navbar-right">
+              <li><button type="button" className="btn btn-default navbar-right navbar-btn">Log Out</button></li>
+            </ul>
+          </div>
+        </nav>
+      </div>          
+      )
+    }
+    
+    // Default navbar, (no user logged in)
+    return(
+      <div className="header">
+        <nav className="navbar navbar-expand-lg navbar-light bg-light">
+          <a className="navbar-brand" href="#">Neo Veg</a>
+          <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span className="navbar-toggler-icon"></span>
+          </button>
+
+          <div className="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul className="navbar-nav mr-auto">
+              <li className="nav-item">
+                <a className="nav-link" href="#">Home</a>
+              </li>
+              <li className="nav-item">
+                <a className="nav-link" href="#">Plants</a>
+              </li>
+              <li className="nav-item">
+                <a className="nav-link" href="#">Tips</a>
+              </li>
+            </ul>
+
+            <ul className="nav navbar-nav navbar-right">
+              <li><button type="button" className="btn btn-default navbar-right navbar-btn">Sign in</button></li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+    )
+  }
+}
+
+export default SearchBar;
