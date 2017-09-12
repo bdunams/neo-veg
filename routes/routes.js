@@ -1,0 +1,15 @@
+
+//DISPLAY ALL VEG IN GARDEN DB
+app.get
+
+//DISPLAY ALL VEG IN USER'S GARDEN
+
+app.get
+
+//ADD VEG TO USER'S GARDEN
+ 
+app.post
+
+//REMOVE VEG FROM USER'S GARDEN
+
+app.remove
