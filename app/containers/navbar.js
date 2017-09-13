@@ -32,7 +32,7 @@ class SearchBar extends Component{
             </ul>
 
             <ul className="nav navbar-nav navbar-right">
-              <li><button type="button" className="btn btn-default navbar-right navbar-btn">Log Out</button></li>
+              <li><a type="button" className="btn btn-default navbar-right navbar-btn">Log Out</a></li>
             </ul>
           </div>
         </nav>
@@ -63,7 +63,7 @@ class SearchBar extends Component{
             </ul>
 
             <ul className="nav navbar-nav navbar-right">
-              <li><button type="button" className="btn btn-default navbar-right navbar-btn">Sign in</button></li>
+              <li><a className="btn btn-success" href="/auth/google" role="button">Sign in</a></li>
             </ul>
           </div>
         </nav>
