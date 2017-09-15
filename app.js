@@ -10,6 +10,7 @@
 	var passport = require('passport');
 	// App Authentication (Google OAuth 2.0)
 	const googleOAuth2 = require('./authentication/googleOAuth2');
+    const session = require('express-session');
 
 // var index = require('./routes/index');
 // var users = require('./routes/users');
