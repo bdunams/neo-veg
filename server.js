@@ -7,6 +7,9 @@
 	var bodyParser = require('body-parser');
 	var logger = require("morgan");
 	var mongoose = require("mongoose");
+	var passport = require('passport');
+	// App Authentication (Google OAuth 2.0)
+	const googleOAuth2 = require('./authentication/googleOAuth2');
 
 // var index = require('./routes/index');
 // var users = require('./routes/users');
@@ -25,6 +28,17 @@ app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 app.use(cookieParser());
 // app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static("public"));
+
+// Initialize Express Sessions
+app.use(session({
+  secret: 'secret',
+  saveUninitialized: true,
+  resave: true
+}));
+// Initialize Passport!  Also use passport.session() middleware, to support
+// persistent login sessions (recommended).
+app.use(passport.initialize());
+app.use(passport.session());
 
 //REQUIRE MODELS//
 	var User = require("./models/user.js");
@@ -46,6 +60,26 @@ app.use(express.static("public"));
 	app.get('/', function(req, res, next) {
 	  res.sendFile(path.join(__dirname, "/public/index.html"));
 	});
+
+	// GET /auth/google
+	//   Use passport.authenticate() as route middleware to authenticate the
+	//   request.  The first step in Google authentication will involve
+	//   redirecting the user to google.com.  After authorization, Google
+	//   will redirect the user back to this application at /auth/google/callback
+	app.get('/auth/google',
+	  passport.authenticate('google', { scope: ['https://www.googleapis.com/auth/plus.login'] }));
+
+
+	// GET /auth/google/callback
+	//   Use passport.authenticate() as route middleware to authenticate the
+	//   request.  If authentication fails, the user will be redirected back to the
+	//   login page.  Otherwise, the primary route function function will be called,
+	//   which, in this example, will redirect the user to the home page.
+	app.get('/auth/google/callback', 
+	  passport.authenticate('google', { failureRedirect: '/login' }),
+	  function(req, res) {
+	    res.redirect('/');
+	  });
 
 	//CREATE USER
 	app.post("/api/user", function(req, res) {
@@ -99,7 +133,7 @@ app.use(express.static("public"));
 				console.log(error);
 			}
 			else {
-				User.findOneAndUpdate({"_id": req.params.id}, "Garden": doc._id})
+				User.findOneAndUpdate({"_id": req.params.id, "Garden": doc._id})
 				.exec(function(err, doc) {
 					if (err) {
 						console.log(err);
@@ -116,7 +150,7 @@ app.use(express.static("public"));
 	//REMOVE VEG FROM USER'S GARDEN
 	app.delete('/api/userveg', function(req, res, next) {
 
-		User.remove({"Garden":{"_id": this._id}};
+		User.remove({"Garden":{"_id": this._id}});
 
 	});
 
