@@ -1,16 +1,23 @@
-var express = require('express');
-var path = require('path');
-var favicon = require('serve-favicon');
-var logger = require('morgan');
-var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
+const express = require('express');
+const path = require('path');
+const favicon = require('serve-favicon');
+const logger = require('morgan');
+const cookieParser = require('cookie-parser');
+const bodyParser = require('body-parser');
+const passport = require('passport');
+const session = require('express-session');
 
-var index = require('./routes/index');
-var users = require('./routes/users');
+// App Route Files
+const index = require('./routes/index');
+const users = require('./routes/users');
 
-var app = express();
+// Initialize Express App
+const app = express();
 
+// App Authentication (Google OAuth 2.0)
+const googleOAuth2 = require('./authentication/googleOAuth2');
 
+// App Middleware
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
@@ -19,8 +26,21 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+//app.use(express.methodOverride());
+// Initialize Express Sessions
+  app.use(session({
+    secret: 'secret',
+    saveUninitialized: true,
+    resave: true
+  }));
+// Initialize Passport!  Also use passport.session() middleware, to support
+// persistent login sessions (recommended).
+app.use(passport.initialize());
+app.use(passport.session());
+
+// App Routes
 app.use('/', index);
-app.use('/users', users);
+app.use('/', users);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
