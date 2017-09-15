@@ -1,9 +1,20 @@
 const passport = require('passport');
+const express = require('express')
 const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 
 
-let GOOGLE_CLIENT_ID = '137520573980-f2l1mo8qc5r0rspfccbabm38q1lk7lob.apps.googleusercontent.com';
-let GOOGLE_CLIENT_SECRET = 'iQP1sq_w4OrHwKO0BOgputHs'
+let GOOGLE_CLIENT_ID = '822292153722-crlcrans73ldnm1um27ovkffc8k1gj9o.apps.googleusercontent.com';
+let GOOGLE_CLIENT_SECRET = '_cWF3jRTdI4XWYN_NU3s81gl';
+
+
+// Passport Session Management
+passport.serializeUser(function(user, done) {
+  done(null, user);
+});
+
+passport.deserializeUser(function(obj, done) {
+  done(null, obj);
+});
 
 // Use the GoogleStrategy within Passport.
 //   Strategies in Passport require a `verify` function, which accept
@@ -12,12 +23,15 @@ let GOOGLE_CLIENT_SECRET = 'iQP1sq_w4OrHwKO0BOgputHs'
 passport.use(new GoogleStrategy({
     clientID: GOOGLE_CLIENT_ID,
     clientSecret: GOOGLE_CLIENT_SECRET,
-    callbackURL: "http://localhost:3000/"
+    callbackURL: "http://localhost:3000/auth/google/callback"
   },
   function(accessToken, refreshToken, profile, done) {
     console.log(profile)
+    console.log(done)
+    return done(profile._json.id)
 //       User.findOrCreate({ googleId: profile.id }, function (err, user) {
 //         return done(err, user);
 //       });
   }
 ));
+

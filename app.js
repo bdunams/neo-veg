@@ -4,16 +4,20 @@ const favicon = require('serve-favicon');
 const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
+const passport = require('passport');
+const session = require('express-session');
 
-// Route Files
+// App Route Files
 const index = require('./routes/index');
 const users = require('./routes/users');
 
+// Initialize Express App
 const app = express();
 
-// Authentication (Google OAuth 2.0)
+// App Authentication (Google OAuth 2.0)
 const googleOAuth2 = require('./authentication/googleOAuth2');
 
+// App Middleware
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
@@ -22,7 +26,19 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Routes
+//app.use(express.methodOverride());
+// Initialize Express Sessions
+  app.use(session({
+    secret: 'secret',
+    saveUninitialized: true,
+    resave: true
+  }));
+// Initialize Passport!  Also use passport.session() middleware, to support
+// persistent login sessions (recommended).
+app.use(passport.initialize());
+app.use(passport.session());
+
+// App Routes
 app.use('/', index);
 app.use('/', users);
 
