@@ -48,10 +48,9 @@ app.use(express.static("public"));
 	});
 
 	//CREATE USER
-	app.post("/api", function(req, res) {
+	app.post("/api/user", function(req, res) {
 	  User.create({
-	    Username: req.body.username,
-	    Email: req.body.email
+	    Name: req.body.username
 	  }, function(err) {
 		if (err) {
 		  console.log(err);
@@ -78,7 +77,9 @@ app.use(express.static("public"));
 
 	//DISPLAY ALL USER VEG
 	app.get("/api/userveg", function(req, res, next) {
-		User.find({Garden: true}).exec(function(err, doc) {
+		User.find({
+			"Garden": true
+		}).exec(function(err, doc) {
     		if (err) {
       		  console.log(err);
     		}
@@ -89,16 +90,33 @@ app.use(express.static("public"));
 	});
 
 	//ADD VEG TO USER'S GARDEN
-	app.put('/api', function(req, res, next) {
+	app.put('/api/userveg', function(req, res, next) {
 
-		db.insert()
+		var newVeg = this._id;
+
+		newVeg.save(function(error, doc) {
+			if (error) {
+				console.log(error);
+			}
+			else {
+				User.findOneAndUpdate({"_id": req.params.id}, "Garden": doc._id})
+				.exec(function(err, doc) {
+					if (err) {
+						console.log(err);
+					}
+					else {
+						res.send(doc);
+					}
+				});
+			}
+		});
 
 	});
 
 	//REMOVE VEG FROM USER'S GARDEN
-	app.delete('/api', function(req, res, next) {
+	app.delete('/api/userveg', function(req, res, next) {
 
-		db.remove()
+		User.remove({"Garden":{"_id": this._id}};
 
 	});
 

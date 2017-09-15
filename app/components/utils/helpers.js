@@ -4,11 +4,20 @@ var axios = require("axios");
 // Helper Functions (in this case the only one is runQuery)
 var helpers = {
 
+  createUser: function() {
+  	return axios.post("/api/user");
+  },
+  getVeg: function() {
+  	return axios.get("/api/veg");
+  },
   getUserVeg: function() {
     return axios.get("/api/userveg");
   },
-  getVeg: function() {
-  	return axios.get("api/veg");
+  updateUserVeg: function() {
+  	return axios.put("/api/userveg");
+  },
+  removeUserVeg: function() {
+  	return axios.remove("/api/userveg");
   }
 
 };
