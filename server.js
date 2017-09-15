@@ -12,10 +12,6 @@
 	const googleOAuth2 = require('./authentication/googleOAuth2');
     const session = require('express-session');
 
-// var index = require('./routes/index');
-// var users = require('./routes/users');
-// var veg = require('./routes/veg');
-
 var app = express();
 var PORT = process.env.PORT || 8080;
 
@@ -46,7 +42,7 @@ app.use(passport.session());
 	var Veg = require("./models/veg.js");
 
 // MONGODB CONFIGURATION//
-	mongoose.connect("mongodb://neoveg");
+	mongoose.connect("mongodb://localhost/neoveg");
 	var db = mongoose.connection;
 
 	db.on("error", function(err) {
