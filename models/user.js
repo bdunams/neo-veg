@@ -4,12 +4,12 @@ var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 
 var UserSchema = new Schema({
-  Username: {
+  Name: {
     type: String,
     required: true
   },
-  Email: {
-    type: String,
+  GoogleId: {
+    type: Number,
     required: true
   },
   Garden: [{
