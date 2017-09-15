@@ -6,13 +6,11 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const passport = require('passport');
 const session = require('express-session');
-
-// App Route Files
-const index = require('./routes/index');
-const users = require('./routes/users');
+const mongoose = require("mongoose");
 
 // Initialize Express App
 const app = express();
+const PORT = process.env.PORT || 8080;
 
 // App Authentication (Google OAuth 2.0)
 const googleOAuth2 = require('./authentication/googleOAuth2');
@@ -28,19 +26,139 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 //app.use(express.methodOverride());
 // Initialize Express Sessions
-  app.use(session({
-    secret: 'secret',
-    saveUninitialized: true,
-    resave: true
-  }));
+app.use(session({
+  secret: 'secret',
+  saveUninitialized: true,
+  resave: true
+}));
 // Initialize Passport!  Also use passport.session() middleware, to support
 // persistent login sessions (recommended).
 app.use(passport.initialize());
 app.use(passport.session());
 
-// App Routes
-app.use('/', index);
-app.use('/', users);
+//REQUIRE MODELS//
+const User = require("./models/user.js");
+const Veg = require("./models/veg.js");
+
+
+
+
+// MONGODB CONFIGURATION//
+	mongoose.connect("mongodb://neoveg");
+	var db = mongoose.connection;
+
+	db.on("error", function(err) {
+	  console.log("Mongoose Error: ", err);
+	});
+
+	db.once("open", function() {
+	  console.log("Mongoose connection successful.");
+	});
+
+
+
+
+//ROUTES AND CRUD
+	app.get('/', function(req, res, next) {
+	  res.sendFile(path.join(__dirname, "/public/index.html"));
+	});
+
+	// GET /auth/google
+	//   Use passport.authenticate() as route middleware to authenticate the
+	//   request.  The first step in Google authentication will involve
+	//   redirecting the user to google.com.  After authorization, Google
+	//   will redirect the user back to this application at /auth/google/callback
+	app.get('/auth/google',
+	  passport.authenticate('google', { scope: ['https://www.googleapis.com/auth/plus.login'] }));
+
+
+	// GET /auth/google/callback
+	//   Use passport.authenticate() as route middleware to authenticate the
+	//   request.  If authentication fails, the user will be redirected back to the
+	//   login page.  Otherwise, the primary route function function will be called,
+	//   which, in this example, will redirect the user to the home page.
+	app.get('/auth/google/callback', 
+	  passport.authenticate('google', { failureRedirect: '/login' }),
+	  function(req, res) {
+	    res.redirect('/');
+	  });
+
+	//CREATE USER
+	app.post("/api/user", function(req, res) {
+	  User.create({
+	    Name: req.body.username
+	  }, function(err) {
+		if (err) {
+		  console.log(err);
+		}
+		else {
+		  res.send("Saved User");
+		}
+	  });
+	});
+
+	//DISPLAY ALL VEG
+	app.get("/api/veg", function(req, res, next) {
+		Veg.find({}).sort([
+    		["VegName", "descending"]
+  		]).exec(function(err, doc) {
+    		if (err) {
+      		  console.log(err);
+    		}
+		    else {
+		      res.send(doc);
+		    }
+  		});
+	});
+
+	//DISPLAY ALL USER VEG
+	app.get("/api/userveg", function(req, res, next) {
+		User.find({
+			"Garden": true
+		}).exec(function(err, doc) {
+    		if (err) {
+      		  console.log(err);
+    		}
+		    else {
+		      res.send(doc);
+		    }
+  		});
+	});
+
+	//ADD VEG TO USER'S GARDEN
+	app.put('/api/userveg', function(req, res, next) {
+
+		var newVeg = this._id;
+
+		newVeg.save(function(error, doc) {
+			if (error) {
+				console.log(error);
+			}
+			else {
+				User.findOneAndUpdate({"_id": req.params.id, "Garden": doc._id})
+				.exec(function(err, doc) {
+					if (err) {
+						console.log(err);
+					}
+					else {
+						res.send(doc);
+					}
+				});
+			}
+		});
+
+	});
+
+	//REMOVE VEG FROM USER'S GARDEN
+	app.delete('/api/userveg', function(req, res, next) {
+
+		User.remove({"Garden":{"_id": this._id}});
+
+	});
+
+
+
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -60,4 +178,9 @@ app.use(function(err, req, res, next) {
   res.json(res.locals.error);
 });
 
-module.exports = app;
+//module.exports = app;
+
+// Listener
+app.listen(PORT, function() {
+  console.log("App listening on PORT: " + PORT);
+});
