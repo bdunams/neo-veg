@@ -90,20 +90,6 @@ app.use(passport.session());
 	    res.redirect('/');
 	  });
 
-	//CREATE USER
-	app.post("/api/user", function(req, res) {
-	  User.create({
-	    Name: req.body.username
-	  }, function(err) {
-		if (err) {
-		  console.log(err);
-		}
-		else {
-		  res.send("Saved User");
-		}
-	  });
-	});
-
 	//DISPLAY ALL VEG
 	app.get("/api/veg", function(req, res, next) {
 		Veg.find({}).sort([
@@ -114,43 +100,44 @@ app.use(passport.session());
     		}
 		    else {
 		      res.send(doc);
+		      // console.log(doc);
 		    }
   		});
 	});
 
 	//DISPLAY ALL USER VEG
-	app.get("/api/userveg", function(req, res, next) {
-		User.find({
-			"Garden": true
-		}).exec(function(err, doc) {
+	app.get("/api/userveg/:id", function(req, res, next) {
+		User.findOne({"_id": req.params.id})
+		.populate("Veg")
+		.exec(function(err, doc) {
     		if (err) {
       		  console.log(err);
     		}
 		    else {
 		      res.send(doc);
+		      console.log(doc);
 		    }
   		});
 	});
 
 	//ADD VEG TO USER'S GARDEN
-	app.put('/api/userveg', function(req, res, next) {
+	app.post('/api/userveg', function(req, res, next) {
+		let newVeg = {
+			"_id": "59bd518e7aa4d64c3eabae26", 
+			//"_id": req.params.id,
+			"Garden": "59b887266e63e5a818f29ec6"
+			// "Garden": this.value
+		};
 
-		var newVeg = this._id;
-
-		newVeg.save(function(error, doc) {
-			if (error) {
-				console.log(error);
+		User.findOneAndUpdate(newVeg)
+		.exec(function(err, doc) {
+			if (err) {
+				res.json({"status": "Failure"});
+				console.log(err);
 			}
 			else {
-				User.findOneAndUpdate({"_id": req.params.id, "Garden": doc._id})
-				.exec(function(err, doc) {
-					if (err) {
-						console.log(err);
-					}
-					else {
-						res.send(doc);
-					}
-				});
+				res.json({"status": "Success"});
+				console.log("Saved!");
 			}
 		});
 
@@ -159,7 +146,8 @@ app.use(passport.session());
 	//REMOVE VEG FROM USER'S GARDEN
 	app.delete('/api/userveg', function(req, res, next) {
 
-		User.remove({"Garden":{"_id": this._id}});
+		// User.remove({"Garden":{"_id": this._id}});
+		// User.remove({"Garden":{"Value": "59b887266e63e5a818f29ec6"}});
 
 	});
 

@@ -9,9 +9,9 @@ var UserSchema = new Schema({
     required: true
   },
   GoogleId: {
-    type: Number,
+    type: String,
     required: true,
-    unique:true
+    unique: true
   },
   Garden: [{
     type: Schema.Types.ObjectId,
