@@ -8,12 +8,18 @@
 	var logger = require("morgan");
 	var mongoose = require("mongoose");
 	var passport = require('passport');
-	// App Authentication (Google OAuth 2.0)
-	const googleOAuth2 = require('./authentication/googleOAuth2');
+	
     const session = require('express-session');
 
 var app = express();
 var PORT = process.env.PORT || 8080;
+
+// Global Variables
+app.use(function(req, res, next) {
+  console.log(req.user)
+  res.locals.user = req.user || null;
+  next()
+});
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
@@ -26,6 +32,8 @@ app.use(cookieParser());
 // app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static("public"));
 
+
+
 // Initialize Express Sessions
 app.use(session({
   secret: 'secret',
@@ -36,6 +44,9 @@ app.use(session({
 // persistent login sessions (recommended).
 app.use(passport.initialize());
 app.use(passport.session());
+
+// App Authentication (Google OAuth 2.0)
+	const googleOAuth2 = require('./authentication/googleOAuth2');
 
 //REQUIRE MODELS//
 	var User = require("./models/user.js");
@@ -55,6 +66,7 @@ app.use(passport.session());
 
 //ROUTES AND CRUD
 	app.get('/', function(req, res, next) {
+      console.log(req.user);
 	  res.sendFile(path.join(__dirname, "/public/index.html"));
 	});
 
@@ -73,7 +85,7 @@ app.use(passport.session());
 	//   login page.  Otherwise, the primary route function function will be called,
 	//   which, in this example, will redirect the user to the home page.
 	app.get('/auth/google/callback', 
-	  passport.authenticate('google', { failureRedirect: '/login' }),
+	  passport.authenticate('google', { failureRedirect: '/' }),
 	  function(req, res) {
 	    res.redirect('/');
 	  });
