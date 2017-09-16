@@ -10,11 +10,12 @@ var UserSchema = new Schema({
   },
   GoogleId: {
     type: Number,
-    required: true
+    required: true,
+    unique:true
   },
   Garden: [{
     type: Schema.Types.ObjectId,
-    ref: "veg"
+    ref: "Veg"
   }]
 });
 
