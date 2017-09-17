@@ -2,29 +2,23 @@
 import React from "react";
 
 // Include the react-router module
-import router from "react-router";
-
 // Include the Route component for displaying individual routes
-let Route = router.Route;
-
 // Include the Router component to contain all our Routes
-// Here where we can pass in some configuration as props
-let Router = router.Router;
-
-// Include the hashHistory prop to handle routing client side without a server
-// https://github.com/ReactTraining/react-router/blob/master/docs/guides/Histories.md#hashhistory
-let hashHistory = router.hashHistory;
-
-// Include the IndexRoute (catch-all route)
-let IndexRoute = router.IndexRoute;
+import { Router, Route, Switch, hashHistory, IndexRoute } from 'react-router'
 
 // Reference the high-level components
-let Main = require("../components/Main");
-let Info = require("../components/Info");
-let Chat = require("../components/Chat");
+import Main from "../components/Main";
+import VegetableList from "../components/vegetable_list";
 
-// Export the Routes
-export default = (
+
+// Include the hashHistory prop to handle routing client side without a server
+//let hashHistory = router.hashHistory;
+//
+//// Include the IndexRoute (catch-all route)
+//let IndexRoute = router.IndexRoute;
+
+
+const Routes = () => {
   
   // The high level component is the Router component
   <Router history={hashHistory}>
@@ -32,13 +26,15 @@ export default = (
     <Route path="/" component={Main}>
       
       {/* If user selects Info or Chat show the appropriate component */}
-      <Route path="info" component={Info} />
-      <Route path="chat" component={Chat} />
+      <Route path="vegetables" component={VegetableList} />
+      
       {/* If user selects any other path... we get the Info Route */}
-      <IndexRoute component={Info} />
+      <IndexRoute component={Main} />
       
     </Route>
     
   </Router>
   
-);
+};
+
+export default Routes;
