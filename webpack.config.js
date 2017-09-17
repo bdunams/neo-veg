@@ -25,6 +25,15 @@ module.exports = {
       }
     ]
   },
+   resolve: {
+        alias: {
+
+            // temporary fix for missing require in `react-ga`
+            // cf. https://github.com/react-ga/react-ga/issues/53
+            'react/lib/Object.assign': 'object-assign',
+
+        },
+    },
   // This lets us debug our react code in chrome dev tools. Errors will have lines and file names
   // Without this the console says all errors are coming from just coming from bundle.js
   devtool: "eval-source-map"
