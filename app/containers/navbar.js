@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom'; 
-import { Switch, Route } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom'; 
+
 
 import Main from '../components/Main';
 import Vegetables from '../components/vegetable_list';
@@ -24,20 +24,25 @@ class Navbar extends Component{
           </button>
 
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
-              <ul className="navbar-nav mr-auto">
-                <li className="nav-item active">
-                  <a className="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="#">Plants</a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link disabled" href="#">Disabled</a>
-                </li>
-              </ul>
+            <ul className="navbar-nav mr-auto">
+              <li className="nav-item">
+                <NavLink to={'/'} exact className="nav-link">Home</NavLink>
+              </li>
+              <li className="nav-item">
+                <NavLink to={'/vegetables'} exact className="nav-link">Plants</NavLink>
+              </li>
+              <li className="nav-item">
+                <NavLink to={'/myGarden'} exact className="nav-link">My Garden</NavLink>
+              </li>
+            </ul>
 
             <ul className="nav navbar-nav navbar-right">
-              <li><a type="button" className="btn btn-default navbar-right navbar-btn">Log Out</a></li>
+              <li className="nav-item">
+                <span className="navbar-brand">Welcome {this.props.user.Name}</span>
+              </li>
+              <li className="nav-item">
+                <a className="btn btn-primary" href="/logout">Log Out</a>
+              </li>
             </ul>
           </div>
         </nav>
@@ -47,7 +52,7 @@ class Navbar extends Component{
     
     // Default navbar, (no user logged in)
     return(
-      <div className="header container">
+      <div className="header">
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
           <a className="navbar-brand" href="#">Neo Veg</a>
           <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -56,11 +61,11 @@ class Navbar extends Component{
 
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav mr-auto">
-                <li className="nav-item active">
-                  <Link to={'/'} className="nav-link">Home</Link>
+                <li className="nav-item">
+                  <NavLink to={'/'} exact className="nav-link">Home</NavLink>
                 </li>
                 <li className="nav-item">
-                  <Link to={'/vegetables'} className="nav-link">Plants</Link>
+                  <NavLink to={'/vegetables'} exact className="nav-link">Plants</NavLink>
                 </li>
                 <li className="nav-item">
                   <a className="nav-link disabled" href="#">Disabled</a>
