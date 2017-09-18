@@ -11,16 +11,11 @@
 	
     const session = require('express-session');
 
+  // App Authentication (Google OAuth 2.0)
+const googleOAuth2 = require('./authentication/googleOAuth2');
 
 var app = express();
 var PORT = process.env.PORT || 8080;
-
-// Global Variables
-app.use(function(req, res, next) {
-  console.log(req.user)
-  res.locals.user = req.user || null;
-  next()
-});
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
@@ -46,8 +41,14 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-// App Authentication (Google OAuth 2.0)
-	const googleOAuth2 = require('./authentication/googleOAuth2');
+
+// Global Variables
+app.use(function(req, res, next) {
+  console.log(req.user, "SIGNED IN")
+  res.locals.user = req.user;
+  next()
+});
+
 
 //REQUIRE MODELS//
 	var User = require("./models/user.js");
@@ -66,10 +67,7 @@ app.use(passport.session());
 	});
 
 //ROUTES AND CRUD
-	app.get('/', function(req, res, next) {
-      console.log(req.user);
-	  res.sendFile(path.join(__dirname, "/public/index.html"));
-	});
+	
 
 	// GET /auth/google
 	//   Use passport.authenticate() as route middleware to authenticate the
@@ -91,19 +89,34 @@ app.use(passport.session());
 	    res.redirect('/');
 	  });
 
-	//CREATE USER
-	app.post("/api/user", function(req, res) {
-	  User.create({
-	    Name: req.body.username
-	  }, function(err) {
-		if (err) {
-		  console.log(err);
-		}
-		else {
-		  res.send("Saved User");
-		}
-	  });
+    // GET LOGOUT
+    app.get('/logout', function(req, res){
+      req.logout();
+      res.redirect('/');
+    });
+
+    // GET the current user 
+    app.get("/user", function(req, res, next) {
+        console.log(req.user, '-------USER TO REACT--------------')
+        console.log(res.locals.user)
+		res.json({user: req.user});
 	});
+
+    
+
+    //CREATE USER
+    app.post("/api/user", function(req, res) {
+      User.create({
+        Name: req.body.username
+      }, function(err) {
+        if (err) {
+          console.log(err);
+        }
+        else {
+          res.send("Saved User");
+        }
+      });
+    });
 
 	//DISPLAY ALL VEG
 	app.get("/api/veg", function(req, res, next) {
@@ -164,6 +177,12 @@ app.use(passport.session());
 
 	});
 
+  app.use('/', function(req, res, next) {
+      console.log(req.user, "REQ.USER");
+      console.log('HOME ROUTE')
+	  res.sendFile(path.join(__dirname, "/public/index.html"));
+	});
+
 // catch 404 and forward to error handler
 	app.use(function(req, res, next) {
 	  var err = new Error('Not Found');
@@ -182,7 +201,6 @@ app.use(passport.session());
 	  res.json(res.locals.error);
 	});
 
-// module.exports = app;
 
 // Listener
 app.listen(PORT, function() {
