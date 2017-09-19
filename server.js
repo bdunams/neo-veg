@@ -105,10 +105,11 @@ app.use(passport.session());
   		});
 	});
 
-	//DISPLAY ALL USER VEG
+	//DISPLAY ALL USER VEG - NOT VERIFIED
+	//http://localhost:8080/api/userveg/59bd518e7aa4d64c3eabae26
 	app.get("/api/userveg/:id", function(req, res, next) {
 		User.findOne({"_id": req.params.id})
-		.populate("Veg")
+		.populate(["Veg"])
 		.exec(function(err, doc) {
     		if (err) {
       		  console.log(err);
@@ -120,7 +121,7 @@ app.use(passport.session());
   		});
 	});
 
-	//ADD VEG TO USER'S GARDEN
+	//ADD VEG TO USER'S GARDEN - VERIFIED
 	app.post('/api/userveg', function(req, res, next) {
 		let newVeg = {
 			"_id": "59bd518e7aa4d64c3eabae26", 
