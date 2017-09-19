@@ -24,13 +24,13 @@ export default class Vegetable extends Component{
       if(vegeData){
         // map out each plant in propper format, then return jsx
         let vegetables = vegeData.map((vegetable) => {
-          let imageUrl = `images/${vegetable.Name}.jpg`;
+          let imageUrl = `images/${vegetable.VegName}.jpg`;
           
           return(
-            <li className="col-md-3 col-sm-2">
+            <div key={vegetable._id} className="col-md-3 col-sm-2">
               <img src={imageUrl} />
-              <h4>{vegetable.Name}</h4>
-            </li>
+              <h4>{vegetable.VegName}</h4>
+            </div>
           )
 
         })
@@ -49,7 +49,7 @@ export default class Vegetable extends Component{
       return (
         <div className="row">
           <div className="container">
-            <ul>{this.state.vegetablesList}</ul>
+            <div>{this.state.vegetablesList}</div>
           </div>
         </div>
       );

@@ -128,6 +128,7 @@ app.use(function(req, res, next) {
       		  console.log(err);
     		}
 		    else {
+              console.log(doc)
 		      res.json({vegetables: doc});
 		    }
   		});
