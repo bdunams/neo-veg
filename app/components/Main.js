@@ -8,6 +8,7 @@ import CenterPiece from './center_piece';
 import TopVegetablesList from './top_vegetables';
 import Navbar from '../containers/navbar';
 import Vegetables from './vegetable_list';
+import MyGarden from './my_garden';
 
 
 // Helper Functions
@@ -21,7 +22,9 @@ export default class Main extends Component{
     this.state = { user: '', loggedIn: false };
   }
   
+  // Will run right before mounting component
   componentWillMount(){
+    // get user data in session and save in state
     axios.get('/user').then((response) => {
       console.log(response.data.user);
       let user = response.data.user;
@@ -44,6 +47,7 @@ export default class Main extends Component{
          
             <Route exact path='/' component={CenterPiece} />
             <Route path='/vegetables' component={Vegetables}/>
+            <Route path='/my-garden' component={MyGarden}/>
           
         </Switch>
       </div>

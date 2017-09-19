@@ -2,9 +2,6 @@ import React, { Component } from 'react';
 import { Link, NavLink } from 'react-router-dom'; 
 
 
-import Main from '../components/Main';
-import Vegetables from '../components/vegetable_list';
-
 class Navbar extends Component{
   constructor(props){
     super(props);
@@ -32,7 +29,7 @@ class Navbar extends Component{
                 <NavLink to={'/vegetables'} exact className="nav-link">Plants</NavLink>
               </li>
               <li className="nav-item">
-                <NavLink to={'/myGarden'} exact className="nav-link">My Garden</NavLink>
+                <NavLink to={'/my-garden'} exact className="nav-link">My Garden</NavLink>
               </li>
             </ul>
 

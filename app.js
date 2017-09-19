@@ -75,7 +75,7 @@ app.use(function(req, res, next) {
 	//   redirecting the user to google.com.  After authorization, Google
 	//   will redirect the user back to this application at /auth/google/callback
 	app.get('/auth/google',
-	  passport.authenticate('google', { scope: ['https://www.googleapis.com/auth/plus.login'] }));
+	  passport.authenticate('google', { scope: ['https://www.googleapis.com/auth/userinfo.email'] }));
 
 
 	// GET /auth/google/callback
@@ -120,6 +120,7 @@ app.use(function(req, res, next) {
 
 	//DISPLAY ALL VEG
 	app.get("/api/veg", function(req, res, next) {
+      
 		Veg.find({}).sort([
     		["VegName", "descending"]
   		]).exec(function(err, doc) {
@@ -127,47 +128,86 @@ app.use(function(req, res, next) {
       		  console.log(err);
     		}
 		    else {
-		      res.send(doc);
+		      res.json({vegetables: doc});
 		    }
   		});
+      
 	});
 
 	//DISPLAY ALL USER VEG
-	app.get("/api/userveg", function(req, res, next) {
-		User.find({
-			"Garden": true
-		}).exec(function(err, doc) {
+	app.get("/api/user-veg", function(req, res, next) {
+      console.log('GET MY GARDEN', req.user)
+      if(req.user){
+        
+        User.find({ _id : req.user._id })
+          .populate("Garden")
+          .exec(function(err, user) {
     		if (err) {
       		  console.log(err);
     		}
 		    else {
-		      res.send(doc);
+		      res.json({ Garden: user.Garden });
 		    }
   		});
+        
+      }
+      else{
+        // No user is logged in
+        res.json({ user: false });
+      }
+      
+		
 	});
 
 	//ADD VEG TO USER'S GARDEN
-	app.put('/api/userveg', function(req, res, next) {
+	app.post('/api/userveg', function(req, res, next) {
 
-		var newVeg = this._id;
-
-		newVeg.save(function(error, doc) {
-			if (error) {
-				console.log(error);
-			}
-			else {
-				User.findOneAndUpdate({"_id": req.params.id, "Garden": doc._id})
-				.exec(function(err, doc) {
-					if (err) {
-						console.log(err);
-					}
-					else {
-						res.send(doc);
-					}
-				});
-			}
-		});
-
+      if(req.user){
+        
+        Veg.findOne({ VegName: req.body.vegetableName})
+          .exec(function(err, doc) {
+    		if (err) {
+      		  console.log(err);
+    		}
+		    else {
+              User.findOneAndUpdate({ _id : req.user._id }, { $push: { "Garden": doc._id }})
+                .exec(function(err, doc) {
+                    if (err) {
+                        console.log(err);
+                    }
+                    else {
+                        res.json(doc);
+                    }
+                });
+            }
+          });
+        
+//		let newVeg = new Veg(req.body);
+//
+//		newVeg.save(function(error, doc) {
+//          if (error) {
+//            console.log(error);
+//          }
+//          else {
+//            User.findOneAndUpdate({ _id : req.user._id }, { $push: { "Garden": doc._id }})
+//            .exec(function(err, doc) {
+//                if (err) {
+//                    console.log(err);
+//                }
+//                else {
+//                    res.json(doc);
+//                }
+//            });
+//          }
+//		});
+                
+      }
+      else{
+        // No user is logged in
+        res.json({ user: false });
+      }
+      
+      
 	});
 
 	//REMOVE VEG FROM USER'S GARDEN
