@@ -19,9 +19,10 @@ passport.use(new GoogleStrategy({
   },
   function(accessToken, refreshToken, profile, done) {
     console.log('LOGGING IN')
+    console.log(profile._json.emails[0].value);
   
     User.findOne({ 'GoogleId': profile._json.id }, function (err, user) {
-      //console.log(err, user);
+//      console.log(err, user);
       if (err) { 
         console.log(err)
         return done(err); 
@@ -29,6 +30,7 @@ passport.use(new GoogleStrategy({
       if (!user) {
         User.create({
           Name: profile._json.displayName,
+          Email: profile._json.emails[0].value,
           GoogleId: profile._json.id
         }, function(err, user) {
           if (err) {

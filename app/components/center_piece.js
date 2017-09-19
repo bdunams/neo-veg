@@ -1,8 +1,10 @@
 // Import React
 import React from 'react';
 
+// Import Top Vegetables Component
 import TopVegetables from './top_vegetables';
 
+// Returns Component JSX
 const CenterPiece = () =>{
   return(
     <div>
