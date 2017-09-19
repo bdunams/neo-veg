@@ -8,6 +8,10 @@ var UserSchema = new Schema({
     type: String,
     required: true
   },
+  Email: {
+    type: String,
+//    required: true
+  },
   GoogleId: {
     type: String,
     required: true,

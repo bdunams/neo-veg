@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+import { Link, NavLink } from 'react-router-dom'; 
 
-class SearchBar extends Component{
+
+class Navbar extends Component{
   constructor(props){
     super(props);
     
@@ -20,19 +22,24 @@ class SearchBar extends Component{
 
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav mr-auto">
-              <li className="nav-item active">
-                <a className="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+              <li className="nav-item">
+                <NavLink to={'/'} exact className="nav-link">Home</NavLink>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#">Plants</a>
+                <NavLink to={'/vegetables'} exact className="nav-link">Plants</NavLink>
               </li>
               <li className="nav-item">
-                <a className="nav-link disabled" href="#">Disabled</a>
+                <NavLink to={'/my-garden'} exact className="nav-link">My Garden</NavLink>
               </li>
             </ul>
 
             <ul className="nav navbar-nav navbar-right">
-              <li><a type="button" className="btn btn-default navbar-right navbar-btn">Log Out</a></li>
+              <li className="nav-item">
+                <span className="navbar-brand">Welcome {this.props.user.Name}</span>
+              </li>
+              <li className="nav-item">
+                <a className="btn btn-primary" href="/logout">Log Out</a>
+              </li>
             </ul>
           </div>
         </nav>
@@ -51,16 +58,16 @@ class SearchBar extends Component{
 
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav mr-auto">
-              <li className="nav-item">
-                <a className="nav-link" href="#">Home</a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link" href="#">Plants</a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link" href="#">Tips</a>
-              </li>
-            </ul>
+                <li className="nav-item">
+                  <NavLink to={'/'} exact className="nav-link">Home</NavLink>
+                </li>
+                <li className="nav-item">
+                  <NavLink to={'/vegetables'} exact className="nav-link">Plants</NavLink>
+                </li>
+                <li className="nav-item">
+                  <a className="nav-link disabled" href="#">Disabled</a>
+                </li>
+              </ul>
 
             <ul className="nav navbar-nav navbar-right">
               <li><a className="btn btn-success" href="/auth/google" role="button">Sign in</a></li>
@@ -72,4 +79,4 @@ class SearchBar extends Component{
   }
 }
 
-export default SearchBar;
+export default Navbar;

@@ -19,16 +19,18 @@ passport.use(new GoogleStrategy({
   },
   function(accessToken, refreshToken, profile, done) {
     console.log('LOGGING IN')
+    console.log(profile._json.emails[0].value);
   
     User.findOne({ 'GoogleId': profile._json.id }, function (err, user) {
-      console.log(err, user);
+//      console.log(err, user);
       if (err) { 
         console.log(err)
-        //return done(err); 
+        return done(err); 
       }
       if (!user) {
         User.create({
           Name: profile._json.displayName,
+          Email: profile._json.emails[0].value,
           GoogleId: profile._json.id
         }, function(err, user) {
           if (err) {
@@ -53,7 +55,12 @@ passport.serializeUser(function(user, done) {
   done(null, user);
 });
 
-passport.deserializeUser(function(obj, done) {
-  done(null, obj);
+passport.deserializeUser(function(user, done) {
+  console.log(user, "_________DE---------------");
+//  done(null, user);
+  User.findOne({ 'GoogleId': user.GoogleId }, function (err, user) {
+    return done(err, user); 
+    
+  })
 });
 

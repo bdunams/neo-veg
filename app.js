@@ -10,16 +10,12 @@
 	var passport = require('passport');
 	
     const session = require('express-session');
+    
+  // App Authentication (Google OAuth 2.0)
+const googleOAuth2 = require('./authentication/googleOAuth2');
 
 var app = express();
 var PORT = process.env.PORT || 8080;
-
-// Global Variables
-app.use(function(req, res, next) {
-  console.log(req.user)
-  res.locals.user = req.user || null;
-  next()
-});
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
@@ -45,8 +41,14 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-// App Authentication (Google OAuth 2.0)
-	const googleOAuth2 = require('./authentication/googleOAuth2');
+
+// Global Variables
+app.use(function(req, res, next) {
+  console.log(req.user, "SIGNED IN")
+  res.locals.user = req.user;
+  next()
+});
+
 
 //REQUIRE MODELS//
 	var User = require("./models/user.js");
@@ -65,10 +67,7 @@ app.use(passport.session());
 	});
 
 //ROUTES AND CRUD
-	app.get('/', function(req, res, next) {
-      console.log(req.user);
-	  res.sendFile(path.join(__dirname, "/public/index.html"));
-	});
+	
 
 	// GET /auth/google
 	//   Use passport.authenticate() as route middleware to authenticate the
@@ -76,7 +75,7 @@ app.use(passport.session());
 	//   redirecting the user to google.com.  After authorization, Google
 	//   will redirect the user back to this application at /auth/google/callback
 	app.get('/auth/google',
-	  passport.authenticate('google', { scope: ['https://www.googleapis.com/auth/plus.login'] }));
+	  passport.authenticate('google', { scope: ['https://www.googleapis.com/auth/userinfo.email'] }));
 
 
 	// GET /auth/google/callback
@@ -90,8 +89,38 @@ app.use(passport.session());
 	    res.redirect('/');
 	  });
 
+    // GET LOGOUT
+    app.get('/logout', function(req, res){
+      req.logout();
+      res.redirect('/');
+    });
+
+    // GET the current user 
+    app.get("/user", function(req, res, next) {
+        console.log(req.user, '-------USER TO REACT--------------')
+        console.log(res.locals.user)
+		res.json({user: req.user});
+	});
+
+    
+
+    //CREATE USER
+    app.post("/api/user", function(req, res) {
+      User.create({
+        Name: req.body.username
+      }, function(err) {
+        if (err) {
+          console.log(err);
+        }
+        else {
+          res.send("Saved User");
+        }
+      });
+    });
+
 	//DISPLAY ALL VEG
 	app.get("/api/veg", function(req, res, next) {
+      
 		Veg.find({}).sort([
     		["VegName", "descending"]
   		]).exec(function(err, doc) {
@@ -99,49 +128,87 @@ app.use(passport.session());
       		  console.log(err);
     		}
 		    else {
-		      res.send(doc);
-		      // console.log(doc);
+              console.log(doc)
+		      res.json({vegetables: doc});
 		    }
   		});
+      
 	});
 
-	//DISPLAY ALL USER VEG - NOT VERIFIED
-	//http://localhost:8080/api/userveg/59bd518e7aa4d64c3eabae26
-	app.get("/api/userveg/:id", function(req, res, next) {
-		User.findOne({"_id": req.params.id})
-		.populate(["Veg"])
-		.exec(function(err, doc) {
+	//DISPLAY ALL USER VEG
+	app.get("/api/user-veg", function(req, res, next) {
+      console.log('GET MY GARDEN', req.user)
+      if(req.user){
+        
+        User.find({ _id : req.user._id })
+          .populate("Garden")
+          .exec(function(err, user) {
     		if (err) {
       		  console.log(err);
     		}
 		    else {
-		      res.send(doc);
-		      console.log(doc);
+		      res.json({ Garden: user.Garden });
 		    }
   		});
+        
+      }
+      else{
+        // No user is logged in
+        res.json({ user: false });
+      }
+      
+		
 	});
 
-	//ADD VEG TO USER'S GARDEN - VERIFIED
+	//ADD VEG TO USER'S GARDEN
 	app.post('/api/userveg', function(req, res, next) {
-		let newVeg = {
-			"_id": "59bd518e7aa4d64c3eabae26", 
-			//"_id": req.params.id,
-			"Garden": "59b887266e63e5a818f29ec6"
-			// "Garden": this.value
-		};
 
-		User.findOneAndUpdate(newVeg)
-		.exec(function(err, doc) {
-			if (err) {
-				res.json({"status": "Failure"});
-				console.log(err);
-			}
-			else {
-				res.json({"status": "Success"});
-				console.log("Saved!");
-			}
-		});
-
+      if(req.user){
+        
+        Veg.findOne({ VegName: req.body.vegetableName})
+          .exec(function(err, doc) {
+    		if (err) {
+      		  console.log(err);
+    		}
+		    else {
+              User.findOneAndUpdate({ _id : req.user._id }, { $push: { "Garden": doc._id }})
+                .exec(function(err, doc) {
+                    if (err) {
+                        console.log(err);
+                    }
+                    else {
+                        res.json(doc);
+                    }
+                });
+            }
+          });
+        
+//		let newVeg = new Veg(req.body);
+//
+//		newVeg.save(function(error, doc) {
+//          if (error) {
+//            console.log(error);
+//          }
+//          else {
+//            User.findOneAndUpdate({ _id : req.user._id }, { $push: { "Garden": doc._id }})
+//            .exec(function(err, doc) {
+//                if (err) {
+//                    console.log(err);
+//                }
+//                else {
+//                    res.json(doc);
+//                }
+//            });
+//          }
+//		});
+                
+      }
+      else{
+        // No user is logged in
+        res.json({ user: false });
+      }
+      
+      
 	});
 
 	//REMOVE VEG FROM USER'S GARDEN
@@ -150,6 +217,12 @@ app.use(passport.session());
 		// User.remove({"Garden":{"_id": this._id}});
 		// User.remove({"Garden":{"Value": "59b887266e63e5a818f29ec6"}});
 
+	});
+
+  app.use('/', function(req, res, next) {
+      console.log(req.user, "REQ.USER");
+      console.log('HOME ROUTE')
+	  res.sendFile(path.join(__dirname, "/public/index.html"));
 	});
 
 // catch 404 and forward to error handler
@@ -170,7 +243,6 @@ app.use(passport.session());
 	  res.json(res.locals.error);
 	});
 
-// module.exports = app;
 
 // Listener
 app.listen(PORT, function() {
