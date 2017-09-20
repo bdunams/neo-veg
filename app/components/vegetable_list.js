@@ -14,6 +14,13 @@ export default class Vegetable extends Component{
     this.state = {vegetablesList: []}
   }
   
+  handleAddToGarden(event){
+    event.preventDefault();
+    
+    axios.post('/api/add-to-garden', {vegetableName: event.target.VegName.value})
+      .then((data) => { console.log(data)} );
+  }
+  
   // Will run right before mounting component
   componentWillMount(){
     // get all plants and display them
@@ -30,6 +37,10 @@ export default class Vegetable extends Component{
             <div key={vegetable._id} className="col-md-3 col-sm-2">
               <img src={imageUrl} />
               <h4>{vegetable.VegName}</h4>
+              <form method="post" onSubmit={this.handleAddToGarden}>
+                <input type="hidden" name="VegName" value={vegetable.VegName} />
+                <button type="submit" className="btn btn-success"></button>
+              </form>
             </div>
           )
 

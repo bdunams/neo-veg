@@ -18,11 +18,8 @@ passport.use(new GoogleStrategy({
     callbackURL: "http://localhost:8080/auth/google/callback"
   },
   function(accessToken, refreshToken, profile, done) {
-    console.log('LOGGING IN')
-    console.log(profile._json.emails[0].value);
   
     User.findOne({ 'GoogleId': profile._json.id }, function (err, user) {
-//      console.log(err, user);
       if (err) { 
         console.log(err)
         return done(err); 
@@ -56,8 +53,7 @@ passport.serializeUser(function(user, done) {
 });
 
 passport.deserializeUser(function(user, done) {
-  console.log(user, "_________DE---------------");
-//  done(null, user);
+
   User.findOne({ 'GoogleId': user.GoogleId }, function (err, user) {
     return done(err, user); 
     
