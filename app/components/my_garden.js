@@ -17,16 +17,19 @@ export default class MyGarden extends Component{
   // Will run right before mounting component
   componentWillMount(){
     axios.get('/api/user-veg').then((response) => {
-      console.log(response.data);
+      console.log(response);
       let gardenData = response.data.Garden;
       
       if(gardenData){
         
         let vegetables = gardenData.map((vegetable) => {
+          let imageUrl = `images/${vegetable.VegName}.jpg`;
+          
           return(
-            <li>
+            <div key={vegetable._id}>
+              <img src={imageUrl} />
               <h4>{vegetable.VegName}</h4>
-            </li>
+            </div>
           )
 
         })
@@ -39,13 +42,13 @@ export default class MyGarden extends Component{
 
   // Render Component
   render() {
-    console.log(this.state.myVegetablesList)
+  
     // IF the user has vegetables in their garden to display
     if(this.state.myVegetablesList.length > 0){
       return (
         <div className="row">
           <div className="container">
-            <ul>{this.state.myVegetablesList}</ul>
+            <div>{this.state.myVegetablesList}</div>
           </div>
         </div>
       );

@@ -44,7 +44,6 @@ app.use(passport.session());
 
 // Global Variables
 app.use(function(req, res, next) {
-  console.log(req.user, "SIGNED IN")
   res.locals.user = req.user;
   next()
 });
@@ -97,8 +96,7 @@ app.use(function(req, res, next) {
 
     // GET the current user 
     app.get("/user", function(req, res, next) {
-        console.log(req.user, '-------USER TO REACT--------------')
-        console.log(res.locals.user)
+
 		res.json({user: req.user});
 	});
 
@@ -128,7 +126,7 @@ app.use(function(req, res, next) {
       		  console.log(err);
     		}
 		    else {
-              console.log(doc)
+              
 		      res.json({vegetables: doc});
 		    }
   		});
@@ -140,9 +138,10 @@ app.use(function(req, res, next) {
       console.log('GET MY GARDEN', req.user)
       if(req.user){
         
-        User.find({ _id : req.user._id })
+        User.findOne({ _id : req.user._id })
           .populate("Garden")
           .exec(function(err, user) {
+            console.log("WITH GARDEN",user)
     		if (err) {
       		  console.log(err);
     		}
@@ -161,10 +160,10 @@ app.use(function(req, res, next) {
 	});
 
 	//ADD VEG TO USER'S GARDEN
-	app.post('/api/userveg', function(req, res, next) {
+	app.post('/api/add-to-garden', function(req, res, next) {
 
       if(req.user){
-        
+        console.log(req.body)
         Veg.findOne({ VegName: req.body.vegetableName})
           .exec(function(err, doc) {
     		if (err) {
