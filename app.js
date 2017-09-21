@@ -122,7 +122,7 @@ app.use(function(req, res, next) {
 	app.get("/api/veg", function(req, res, next) {
       
 		Veg.find({}).sort([
-    		["VegName", "descending"]
+    		["VegName", "ascending"]
   		]).exec(function(err, doc) {
     		if (err) {
       		  console.log(err);
@@ -147,7 +147,7 @@ app.use(function(req, res, next) {
       		  console.log(err);
     		}
 		    else {
-		      res.json({ Garden: user.Garden });
+		      res.json({ Garden: user[0].Garden });
 		    }
   		});
         
@@ -166,7 +166,7 @@ app.use(function(req, res, next) {
       if(req.user){
         
         Veg.findOne({ VegName: req.body.vegetableName})
-          .exec(function(err, doc) {
+        .exec(function(err, doc) {
     		if (err) {
       		  console.log(err);
     		}
@@ -181,27 +181,7 @@ app.use(function(req, res, next) {
                     }
                 });
             }
-          });
-        
-//		let newVeg = new Veg(req.body);
-//
-//		newVeg.save(function(error, doc) {
-//          if (error) {
-//            console.log(error);
-//          }
-//          else {
-//            User.findOneAndUpdate({ _id : req.user._id }, { $push: { "Garden": doc._id }})
-//            .exec(function(err, doc) {
-//                if (err) {
-//                    console.log(err);
-//                }
-//                else {
-//                    res.json(doc);
-//                }
-//            });
-//          }
-//		});
-                
+        });            
       }
       else{
         // No user is logged in
@@ -217,6 +197,42 @@ app.use(function(req, res, next) {
 		// User.remove({"Garden":{"_id": this._id}});
 		// User.remove({"Garden":{"Value": "59b887266e63e5a818f29ec6"}});
 
+	});
+
+	//ADD DATES TO USER'S CALENDAR
+	app.get('/api/calendar/:id', function (req, res, next){
+		// if(req.user){
+			console.log("HEY:", req.User);
+
+			Veg.find()
+			.where("_id")
+			.in(req.user.garden)
+			.exec(function(err, doc) {
+    		if (err) {
+      			console.log(err);
+    		}
+		    else {
+		    	res.json(doc);
+          //   	$('#calendar').fullCalendar({
+	         //    	Veg.VegName: [{
+	         //            title: 'Indoor',
+	         //            start: Veg.IndoorSeedStart,
+	         //            end: Veg.IndoorSeedEnd
+	         //        },
+	         //        {
+	         //            title: 'Outdoor',
+	         //            start: Veg.OutdoorSeedStart,
+	         //            end: Veg.OutdoorSeedEnd
+	         //        },
+	         //        {
+	         //            title: 'Harvest',
+	         //            start: Veg.HarvestStart,
+	         //            end: Veg.HarvestEnd
+	         //        }]
+        		// });
+            }
+		});
+		// }
 	});
 
   app.use('/', function(req, res, next) {
