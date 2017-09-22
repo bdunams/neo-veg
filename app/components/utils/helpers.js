@@ -18,6 +18,9 @@ var helpers = {
   },
   removeUserVeg: function() {
   	return axios.remove("/api/userveg");
+  },
+  addToCal: function() {
+    return axios.get("/api/calendar");
   }
 
 };

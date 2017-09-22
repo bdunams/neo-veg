@@ -146,7 +146,7 @@ app.use(function(req, res, next) {
       		  console.log(err);
     		}
 		    else {
-		      res.json({ Garden: user[0].Garden });
+		      res.json({ Garden: user.Garden });
 		    }
   		});
         
@@ -186,8 +186,7 @@ app.use(function(req, res, next) {
         // No user is logged in
         res.json({ user: false });
       }
-      
-      
+
 	});
 
 	//REMOVE VEG FROM USER'S GARDEN
@@ -199,39 +198,62 @@ app.use(function(req, res, next) {
 	});
 
 	//ADD DATES TO USER'S CALENDAR
-	app.get('/api/calendar/:id', function (req, res, next){
-		// if(req.user){
-			console.log("HEY:", req.User);
+	app.get('/api/calendar/', function (req, res, next){
+		if( ! req.user ) res.redirect('/');
+		if(req.user){
+			User
+				.findOne()
+				.where(req.user._id)
+				.populate('Garden')
+				.exec(function(err, data){
+					console.log('Garden');
+					let temp = {};
+					data.Garden.forEach(function(item){
+						temp[item.VegName] = [];
 
-			Veg.find()
-			.where("_id")
-			.in(req.user.garden)
-			.exec(function(err, doc) {
-    		if (err) {
-      			console.log(err);
-    		}
-		    else {
-		    	res.json(doc);
-          //   	$('#calendar').fullCalendar({
-	         //    	Veg.VegName: [{
-	         //            title: 'Indoor',
-	         //            start: Veg.IndoorSeedStart,
-	         //            end: Veg.IndoorSeedEnd
-	         //        },
-	         //        {
-	         //            title: 'Outdoor',
-	         //            start: Veg.OutdoorSeedStart,
-	         //            end: Veg.OutdoorSeedEnd
-	         //        },
-	         //        {
-	         //            title: 'Harvest',
-	         //            start: Veg.HarvestStart,
-	         //            end: Veg.HarvestEnd
-	         //        }]
-        		// });
-            }
-		});
-		// }
+		    			temp[item.VegName][0] = {
+							title: "Indoor",
+							start: item.IndoorSeedStart,
+							end: item.IndoorSeedEnd
+						}
+
+						temp[item.VegName][1] = {
+							title: "Outdoor",
+		                    start: item.OutdoorSeedStart,
+		                    end: item.OutdoorSeedEnd
+						}
+
+						temp[item.VegName][2] = {
+							title: "Harvest",
+		                    start: item.HarvestStart,
+		                    end: item.HarvestEnd
+						}
+					});
+
+					data = temp;
+					res.send(data); 
+				});
+
+	  //         //   	$('#calendar').fullCalendar({
+		 //         //    	Veg.VegName: [{
+		 //         //            title: 'Indoor',
+		 //         //            start: Veg.IndoorSeedStart,
+		 //         //            end: Veg.IndoorSeedEnd
+		 //         //        },
+		 //         //        {
+		 //         //            title: 'Outdoor',
+		 //         //            start: Veg.OutdoorSeedStart,
+		 //         //            end: Veg.OutdoorSeedEnd
+		 //         //        },
+		 //         //        {
+		 //         //            title: 'Harvest',
+		 //         //            start: Veg.HarvestStart,
+		 //         //            end: Veg.HarvestEnd
+		 //         //        }]
+	  //       		// });
+	  //           }
+			// });
+		}
 	});
 
   app.use('/', function(req, res, next) {
