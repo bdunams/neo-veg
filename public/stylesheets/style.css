@@ -11,3 +11,8 @@
 }
 .navbar-nav > li {
 	color: #fff !important;
+}
+
+.navbar-light .navbar-nav .nav-link {
+  color: #fff !important;
+}
