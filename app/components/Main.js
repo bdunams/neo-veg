@@ -41,9 +41,10 @@ export default class Main extends Component{
   // Here we describe this component's render method
   render() {
     return (
-      <div className="container">
-        <Navbar user={this.state.user} loggedIn={this.state.loggedIn} />
-        <Switch>
+
+      <div className="">
+        < Navbar user={this.state.user} loggedIn={this.state.loggedIn} />
+        < Switch>
          
             <Route exact path='/' component={CenterPiece} />
             <Route path='/vegetables' component={Vegetables}/>

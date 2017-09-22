@@ -49,7 +49,7 @@ class Navbar extends Component{
     
     // Default navbar, (no user logged in)
     return(
-      <div className="header">
+      <div className="">
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
           <a className="navbar-brand" href="#">Neo Veg</a>
           <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

@@ -1,8 +1,13 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+/*.carousel {
+    position:absolute;
+    top:0;    
+}*/
+.navbar {
+    position:fixed;
+    z-index:10000;
+    color: #fff !important;
+    background-color: transparent !important;
+    width:100%;
 }
-
-a {
-  color: #00B7FF;
-}
+.navbar-nav > li {
+	color: #fff !important;

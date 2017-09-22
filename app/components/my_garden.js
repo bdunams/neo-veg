@@ -26,7 +26,7 @@ export default class MyGarden extends Component{
           let imageUrl = `images/${vegetable.VegName}.jpg`;
           
           return(
-            <div key={vegetable._id}>
+            <div key={vegetable._id} className="col-md-3 col-sm-2">
               <img src={imageUrl} />
               <h4>{vegetable.VegName}</h4>
             </div>
