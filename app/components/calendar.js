@@ -36,27 +36,32 @@ export default class MyGarden extends Component{
 
       console.log(calData);
 
-      calData[item.VegName][0] = {
-        title: "Indoor",
+//      calData[item.VegName][0] = 
+      calData.push({
+        title: `Indoor ${item.VegName}`,
         start: IndoorStart,
         end: IndoorEnd
-      }
+      })
 
-      calData[item.VegName][1] = {
-        title: "Outdoor",
+//      calData[item.VegName][1] = 
+      
+       calData.push({
+        title: `Outdoor ${item.VegName}`,
         start: OutdoorStart,
         end: OutdoorEnd
-      }
+      })
 
-      calData[item.VegName][2] = {
-        title: "Harvest",
+//      calData[item.VegName][2] = 
+      
+       calData.push({
+        title: `Harvest ${item.VegName}`,
         start: HarvestStart,
         end: HarvestEnd
-      }
+      })
 
     });
 
-    this.setState({calData: calData});
+    this.setState({calData: {events:calData}});
 
   }
 
@@ -70,7 +75,7 @@ export default class MyGarden extends Component{
   // Render Component
   render() {
     return (
-      <div>
+      <div className="container-fluid">
         <div id='calendar'></div>
       </div>
     )
