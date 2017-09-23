@@ -58,7 +58,7 @@ export default class Vegetable extends Component{
     // IF there is vegetable data to display
     if(this.state.vegetablesList.length > 0){
       return (
-        <div className="row">
+        <div id="all-plants" className="row">
           <div className="container">
             <div>{this.state.vegetablesList}</div>
           </div>
@@ -67,7 +67,7 @@ export default class Vegetable extends Component{
     }
     
     return (
-      <div className="row">
+      <div id="all-plants" className="row">
         <div className="container">
           <div>
             <h2>Vegetables Ready to be Planted</h2>
