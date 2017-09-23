@@ -14,35 +14,40 @@ class Navbar extends Component{
     if(this.props.user){
       return(
         <div className="header">
-          <nav className="navbar navbar-expand-lg navbar-light bg-light">
-          <a className="navbar-brand" href="#">Neo Veg</a>
-          <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span className="navbar-toggler-icon"></span>
-          </button>
+          <div className="container">
+            <nav className="navbar navbar-expand-lg navbar-light navbar-inverse">
+            <h2 className="navbar-brand brand-name">
+               <a href="index.html"><img className="img-responsive2"       
+               src="images/white_logo.png"/></a>
+              </h2>
+            <button className="navbar-toggler navbar-toggle" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span className="navbar-toggler-icon"></span>
+            </button>
 
-          <div className="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul className="navbar-nav mr-auto">
-              <li className="nav-item">
-                <NavLink to={'/'} exact className="nav-link">Home</NavLink>
-              </li>
-              <li className="nav-item">
-                <NavLink to={'/vegetables'} exact className="nav-link">Plants</NavLink>
-              </li>
-              <li className="nav-item">
-                <NavLink to={'/my-garden'} exact className="nav-link">My Garden</NavLink>
-              </li>
-            </ul>
+            <div className="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul className="navbar-nav mr-auto">
+                <li className="nav-item">
+                  <NavLink to={'/'} exact className="nav-link">Home</NavLink>
+                </li>
+                <li className="nav-item">
+                  <NavLink to={'/vegetables'} exact className="nav-link">Plants</NavLink>
+                </li>
+                <li className="nav-item">
+                  <NavLink to={'/my-garden'} exact className="nav-link">My Garden</NavLink>
+                </li>
+              </ul>
 
-            <ul className="nav navbar-nav navbar-right">
-              <li className="nav-item">
-                <span className="navbar-brand">Welcome {this.props.user.Name}</span>
-              </li>
-              <li className="nav-item">
-                <a className="btn btn-primary" href="/logout">Log Out</a>
-              </li>
-            </ul>
-          </div>
-        </nav>
+              <ul className="nav navbar-nav navbar-right">
+                <li className="nav-item">
+                  <span className="navbar-brand">Welcome {this.props.user.Name}</span>
+                </li>
+                <li className="nav-item">
+                  <a className="btn btn-primary" href="/logout">Log Out</a>
+                </li>
+              </ul>
+            </div>
+          </nav>
+        </div>
       </div>          
       )
     }
@@ -53,8 +58,8 @@ class Navbar extends Component{
       <div className="header">
           <div className="container">
             <nav className="navbar navbar-expand-lg navbar-light navbar-inverse">
-              <h2 class="navbar-brand brand-name">
-               <a href="index.html"><img class="img-responsive2"       
+              <h2 className="navbar-brand brand-name">
+               <a href="index.html"><img className="img-responsive2"       
                src="images/white_logo.png"/></a>
               </h2>
               <button className="navbar-toggler navbar-toggle" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
