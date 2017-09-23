@@ -4,9 +4,9 @@ var axios = require("axios");
 // Helper Functions (in this case the only one is runQuery)
 var helpers = {
 
-  createUser: function() {
-  	return axios.post("/api/user");
-  },
+  // createUser: function() {
+  // 	return axios.post("/api/user");
+  // },
   getVeg: function() {
   	return axios.get("/api/veg");
   },
@@ -18,6 +18,9 @@ var helpers = {
   },
   removeUserVeg: function() {
   	return axios.remove("/api/userveg");
+  },
+  addToCal: function() {
+    return axios.get("/api/calendar");
   }
 
 };

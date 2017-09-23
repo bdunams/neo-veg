@@ -1,4 +1,3 @@
-
 .header {
     position: fixed;
     top: 0;
@@ -237,4 +236,15 @@ footer ul li a:hover {
 	footer ul {
 		float: none;
 	}
+
+/* Shift Pages down a bit */
+
+#calender{
+  position: relative;
+  top: 80px;
+}
+
+#all-plants{
+  position: relative;
+  top: 80px;
 }
