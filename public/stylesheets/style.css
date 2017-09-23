@@ -236,15 +236,21 @@ footer ul li a:hover {
 	footer ul {
 		float: none;
 	}
-
+}
 /* Shift Pages down a bit */
 
-#calender{
+#calendar{
   position: relative;
-  top: 80px;
+  top: 100px;
+  
+}
+
+#my-garden{
+  margin-top: 120px;
 }
 
 #all-plants{
   position: relative;
-  top: 80px;
+  top: 120px;
+  margin-bottom: 120px;
 }

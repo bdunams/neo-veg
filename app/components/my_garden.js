@@ -28,7 +28,7 @@ export default class MyGarden extends Component{
           let imageUrl = `images/${vegetable.VegName}.jpg`;
           
           return(
-            <div key={vegetable._id} className="col-md-3 col-sm-2">
+            <div key={vegetable._id} className="col-md-4 col-sm-2">
               <img src={imageUrl} />
               <h4>{vegetable.VegName}</h4>
             </div>
@@ -52,9 +52,9 @@ export default class MyGarden extends Component{
 
         < Calendar gardenData={ this.state.gardenData }  />
 
-          <div className="row">
-            <div className="container">
-              <div>{this.state.myVegetablesList}</div>
+          <div id="my-garden" className="container">
+            <div className="row">
+              {this.state.myVegetablesList}
             </div>
           </div>
         </div>
@@ -62,7 +62,7 @@ export default class MyGarden extends Component{
     }
     
     return (
-      <div className="row">
+      <div id="my-garden" className="row">
         <div className="container">
           <h2>View your garden here!</h2>
           <p>You don't have any plants yet, go add some and track their progress!</p>

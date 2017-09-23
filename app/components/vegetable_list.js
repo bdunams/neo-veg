@@ -34,8 +34,8 @@ export default class Vegetable extends Component{
           let imageUrl = `images/${vegetable.VegName}.jpg`;
           
           return(
-            <div key={vegetable._id} className="col-md-3 col-sm-2">
-              <img src={imageUrl} />
+            <div key={vegetable._id} className="col-md-4 col-sm-2">
+              <img src={imageUrl} className="img-responsive" />
               <h4>{vegetable.VegName}</h4>
               <form method="post" onSubmit={this.handleAddToGarden}>
                 <input type="hidden" name="VegName" value={vegetable.VegName} />
@@ -58,17 +58,17 @@ export default class Vegetable extends Component{
     // IF there is vegetable data to display
     if(this.state.vegetablesList.length > 0){
       return (
-        <div id="all-plants" className="row">
-          <div className="container">
-            <div>{this.state.vegetablesList}</div>
+        <div id="all-plants" className="container">
+          <div className="row">
+            {this.state.vegetablesList}
           </div>
         </div>
       );
     }
     
     return (
-      <div id="all-plants" className="row">
-        <div className="container">
+      <div id="all-plants" className="container">
+        <div className="row">
           <div>
             <h2>Vegetables Ready to be Planted</h2>
           </div>
