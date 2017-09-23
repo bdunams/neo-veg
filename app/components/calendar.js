@@ -19,7 +19,8 @@ export default class MyGarden extends Component{
   // Will run right before mounting component
   componentWillMount(){
 
-    let calData = {};
+    // let calData = {};
+    let calData = [];
     this.props.gardenData.forEach(function(item){
 
       calData[item.VegName] = [];
