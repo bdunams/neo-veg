@@ -13,6 +13,7 @@ export default class TopVegetables extends Component{
       <div className="row">
         <div className="container text-center">
           <h2>Vegetables in Season Now</h2>
+      
         </div>
       </div>
     );
