@@ -9,7 +9,7 @@ class Navbar extends Component{
     this.state = { user: '' };
   }
   
-  render(){
+   render(){
     // IF there is a user logged in, return user navbar
     if(this.props.user){
       return(
@@ -46,34 +46,40 @@ class Navbar extends Component{
       </div>          
       )
     }
+
     
     // Default navbar, (no user logged in)
     return(
       <div className="header">
-        <nav className="navbar navbar-expand-lg navbar-light bg-light">
-          <a className="navbar-brand" href="#">Neo Veg</a>
-          <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span className="navbar-toggler-icon"></span>
-          </button>
+          <div className="container">
+            <nav className="navbar navbar-expand-lg navbar-light navbar-inverse">
+              <h2 class="navbar-brand brand-name">
+               <a href="index.html"><img class="img-responsive2"       
+               src="images/white_logo.png"/></a>
+              </h2>
+              <button className="navbar-toggler navbar-toggle" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span className="navbar-toggler-icon"></span>
+              </button>
 
-          <div className="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul className="navbar-nav mr-auto">
-                <li className="nav-item">
-                  <NavLink to={'/'} exact className="nav-link">Home</NavLink>
-                </li>
-                <li className="nav-item">
-                  <NavLink to={'/vegetables'} exact className="nav-link">Plants</NavLink>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link disabled" href="#">Disabled</a>
-                </li>
-              </ul>
+              <div className="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul className="navbar-nav mr-auto">
+                    <li className="nav-item">
+                      <NavLink to={'/'} exact className="nav-link">Home</NavLink>
+                    </li>
+                    <li className="nav-item">
+                      <NavLink to={'/vegetables'} exact className="nav-link">Plants</NavLink>
+                    </li>
+                    <li className="nav-item">
+                      <a className="nav-link disabled" href="#">Disabled</a>
+                    </li>
+                  </ul>
 
-            <ul className="nav navbar-nav navbar-right">
-              <li><a className="btn btn-success" href="/auth/google" role="button">Sign in</a></li>
-            </ul>
+                <ul className="nav navbar-nav navbar-right">
+                  <li><a className="btn btn-success" href="/auth/google" role="button">Sign in</a></li>
+                </ul>
+              </div>
+            </nav>
           </div>
-        </nav>
       </div>
     )
   }
