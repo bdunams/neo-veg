@@ -2,6 +2,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
+import Calendar from './calendar';
+
 // Helper Functions
 import Helpers from './utils/helpers.js';
 
@@ -11,7 +13,7 @@ export default class MyGarden extends Component{
   constructor(props){
     super(props)
     
-    this.state = {myVegetablesList: []}
+    this.state = {myVegetablesList: [], gardenData: ""}
   }
   
   // Will run right before mounting component
@@ -34,7 +36,7 @@ export default class MyGarden extends Component{
 
         })
       
-        this.setState({ myVegetablesList: vegetables });
+        this.setState({ myVegetablesList: vegetables, gardenData: gardenData });
       }
     })
     
@@ -46,9 +48,14 @@ export default class MyGarden extends Component{
     // IF the user has vegetables in their garden to display
     if(this.state.myVegetablesList.length > 0){
       return (
-        <div className="row">
-          <div className="container">
-            <div>{this.state.myVegetablesList}</div>
+        <div>
+
+        < Calendar gardenData={ this.state.gardenData }  />
+
+          <div className="row">
+            <div className="container">
+              <div>{this.state.myVegetablesList}</div>
+            </div>
           </div>
         </div>
       );

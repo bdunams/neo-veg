@@ -207,30 +207,30 @@ app.use(function(req, res, next) {
 				.populate('Garden')
 				.exec(function(err, data){
 					console.log('Garden');
-					let temp = {};
+					let calendar = {};
 					data.Garden.forEach(function(item){
-						temp[item.VegName] = [];
+						calendar[item.VegName] = [];
 
-		    			temp[item.VegName][0] = {
+		    			calendar[item.VegName][0] = {
 							title: "Indoor",
 							start: item.IndoorSeedStart,
 							end: item.IndoorSeedEnd
 						}
 
-						temp[item.VegName][1] = {
+						calendar[item.VegName][1] = {
 							title: "Outdoor",
 		                    start: item.OutdoorSeedStart,
 		                    end: item.OutdoorSeedEnd
 						}
 
-						temp[item.VegName][2] = {
+						calendar[item.VegName][2] = {
 							title: "Harvest",
 		                    start: item.HarvestStart,
 		                    end: item.HarvestEnd
 						}
 					});
 
-					data = temp;
+					data = calendar;
 					res.send(data); 
 				});
 
