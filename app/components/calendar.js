@@ -61,6 +61,7 @@ export default class MyGarden extends Component{
   }
 
   componentDidMount(){
+    console.log(this.state.calData)
      $('#calendar').fullCalendar(this.state.calData);
      // $('#calendar').fullCalendar(this.calData);
   }
