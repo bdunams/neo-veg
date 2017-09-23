@@ -1,7 +1,6 @@
-/*.carousel {
-    position:absolute;
-    top:0;    
-}*/
+.carousel {
+     width: 100%;  
+}
 .navbar {
     position:fixed;
     z-index:10000;
