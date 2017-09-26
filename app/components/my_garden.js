@@ -26,6 +26,15 @@ export default class MyGarden extends Component{
         
         let vegetables = gardenData.map((vegetable) => {
           let imageUrl = `images/${vegetable.VegName}.jpg`;
+
+          var IndoorStart = moment(vegetable.IndoorSeedStart).format("MMMM DD");
+          var IndoorEnd = moment(vegetable.IndoorSeedEnd).format("MMMM DD");
+
+          var OutdoorStart = moment(vegetable.OutdoorSeedStart).format("MMMM DD");
+          var OutdoorEnd = moment(vegetable.OutdoorSeedEnd).format("MMMM DD");
+
+          var HarvestStart = moment(vegetable.HarvestStart).format("MMMM DD");
+          var HarvestEnd = moment(vegetable.HarvestEnd).format("MMMM DD");
           
           return(
             <div key={vegetable._id} className="col-md-12 col-sm-12">
@@ -38,8 +47,8 @@ export default class MyGarden extends Component{
                 
                 <div className="col-md-6">
                   <h4>Tips</h4>
-                  <p>Spacing: {vegetable.Spacing}</p>
-                  <p>Depth: {vegetable.Depth}</p>
+                  <p>Spacing: {vegetable.Spacing}"</p>
+                  <p>Depth: {vegetable.Depth}"</p>
                   <p>Fertilize: {vegetable.Fertilize}</p>
                   <p>Water: {vegetable.Water}</p>
                 </div>
@@ -47,13 +56,13 @@ export default class MyGarden extends Component{
                 <div className="col-md-6">
                   <h4>Important Dates</h4>
                   <p>
-                    Indoor Seeding: From {vegetable.IndoorSeedStart} to {vegetable.IndoorSeedEnd}
+                    Indoor Seeding: From {IndoorStart} to {IndoorEnd}
                   </p>
                   <p>
-                    Outdoor Seeding: From {vegetable.OutdoorSeedStart} to {vegetable.OutdoorSeedEnd}
+                    Outdoor Seeding: From {OutdoorStart} to {OutdoorEnd}
                   </p>
                   <p>
-                    Harvest Time: From {vegetable.HarvestStart} to {vegetable.HarvestEnd}
+                    Harvest Time: From {HarvestStart} to {HarvestEnd}
                   </p>
                 </div> 
               </div>
