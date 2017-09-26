@@ -25,38 +25,48 @@ export default class MyGarden extends Component{
 
       calData[item.VegName] = [];
 
-      var IndoorStart = moment(item.IndoorSeedStart).format("YYYY-MM-DD");
-      var IndoorEnd = moment(item.IndoorSeedEnd).format("YYYY-MM-DD");
+      var IndoorStart = moment(item.IndoorSeedStart).format("MM-DD");
+      // var IndoorEnd = moment(item.IndoorSeedEnd).format("YYYY-MM-DD");
+      var IndoorShortRange = moment(IndoorStart).add(1, 'w').format("MM-DD");
 
-      var OutdoorStart = moment(item.OutdoorSeedStart).format("YYYY-MM-DD");
-      var OutdoorEnd = moment(item.OutdoorSeedEnd).format("YYYY-MM-DD");
+      var OutdoorStart = moment(item.OutdoorSeedStart).format("MM-DD");
+      // var OutdoorEnd = moment(item.OutdoorSeedEnd).format("YYYY-MM-DD");
+      var OutdoorShortRange = moment(OutdoorStart).add(7, 'days').format("MM-DD");
 
-      var HarvestStart = moment(item.HarvestStart).format("YYYY-MM-DD");
-      var HarvestEnd = moment(item.HarvestEnd).format("YYYY-MM-DD");
+      var HarvestStart = moment(item.HarvestStart).format("MM-DD");
+      // var HarvestEnd = moment(item.HarvestEnd).format("YYYY-MM-DD");
+      var HarvestShortRange = moment(HarvestStart).add(7, 'days').format("MM-DD");
 
-      console.log(calData);
+      var year = moment().year();
+      // var year = 2018;
 
-//      calData[item.VegName][0] = 
+      // console.log(calData);
+
       calData.push({
-        title: `Indoor ${item.VegName}`,
-        start: IndoorStart,
-        end: IndoorEnd
+        title: `Seed ${item.VegName} Indoors`,
+        start: year + "-" + IndoorStart,
+        // end: IndoorEnd,
+        end: year + "-" + IndoorShortRange,
+        color: "#24B500",
+        textColor: "#FFFFFF"
+      })
+      
+      calData.push({
+        title: `Plant ${item.VegName} Outdoors`,
+        start: year + "-" + OutdoorStart,
+        // end: OutdoorEnd,
+        end: year + "-" + OutdoorShortRange,
+        color: "#FFE000",
+        textColor: "#FFFFFF"
       })
 
-//      calData[item.VegName][1] = 
-      
-       calData.push({
-        title: `Outdoor ${item.VegName}`,
-        start: OutdoorStart,
-        end: OutdoorEnd
-      })
-
-//      calData[item.VegName][2] = 
-      
-       calData.push({
+      calData.push({
         title: `Harvest ${item.VegName}`,
-        start: HarvestStart,
-        end: HarvestEnd
+        start: year + "-" + HarvestStart,
+        // end: HarvestEnd,
+        end: year + "-" + HarvestShortRange,
+        color: "#D30300",
+        textColor: "#FFFFFF"
       })
 
      // $('#calendar').fullCalendar({
@@ -86,7 +96,6 @@ export default class MyGarden extends Component{
   componentDidMount(){
     console.log(this.state.calData)
      $('#calendar').fullCalendar(this.state.calData);
-     // $('#calendar').fullCalendar(this.calData);
   }
 
 

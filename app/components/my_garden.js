@@ -59,7 +59,7 @@ export default class MyGarden extends Component{
                     Indoor Seeding: From {IndoorStart} to {IndoorEnd}
                   </p>
                   <p>
-                    Outdoor Seeding: From {OutdoorStart} to {OutdoorEnd}
+                    Outdoor Planting/Seeding: From {OutdoorStart} to {OutdoorEnd}
                   </p>
                   <p>
                     Harvest Time: From {HarvestStart} to {HarvestEnd}
