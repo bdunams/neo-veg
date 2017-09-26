@@ -59,6 +59,24 @@ export default class MyGarden extends Component{
         end: HarvestEnd
       })
 
+     // $('#calendar').fullCalendar({
+     //         //      Veg.VegName: [{
+     //         //            title: 'Indoor',
+     //         //            start: Veg.IndoorSeedStart,
+     //         //            end: Veg.IndoorSeedEnd
+     //         //        },
+     //         //        {
+     //         //            title: 'Outdoor',
+     //         //            start: Veg.OutdoorSeedStart,
+     //         //            end: Veg.OutdoorSeedEnd
+     //         //        },
+     //         //        {
+     //         //            title: 'Harvest',
+     //         //            start: Veg.HarvestStart,
+     //         //            end: Veg.HarvestEnd
+     //         //        }]
+    //          // });
+
     });
 
     this.setState({calData: {events:calData}});
