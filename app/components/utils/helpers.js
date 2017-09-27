@@ -17,7 +17,7 @@ var helpers = {
   	return axios.put("/api/userveg");
   },
   removeUserVeg: function() {
-  	return axios.remove("/api/userveg");
+  	return axios.post("/api/remove-from-garden");
   },
   addToCal: function() {
     return axios.get("/api/calendar");

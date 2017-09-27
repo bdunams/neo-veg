@@ -15,6 +15,13 @@ export default class MyGarden extends Component{
     
     this.state = {myVegetablesList: [], gardenData: ""}
   }
+
+  handleRemoveFromGarden(event){
+    event.preventDefault();
+    
+    axios.post('/api/remove-from-garden', {vegId: event.target._id.value})
+      .then((data) => { console.log(data)} );
+  }
   
   // Will run right before mounting component
   componentWillMount(){
@@ -59,6 +66,11 @@ export default class MyGarden extends Component{
                   Harvest Time: From {HarvestStart} to {HarvestEnd}
                 </p>
 
+                <form method="post" onSubmit={this.handleRemoveFromGarden}>
+                  <input type="hidden" name="_id" value={vegetable._id} />
+                  <button type="submit" className="btn btn-danger"></button>
+                </form>
+
               <hr />
             </div>
           )
@@ -84,6 +96,7 @@ export default class MyGarden extends Component{
           <div id="my-garden" className="container">
             <div className="row">
               {this.state.myVegetablesList}
+
             </div>
           </div>
         </div>

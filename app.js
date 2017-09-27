@@ -190,9 +190,10 @@ app.use(function(req, res, next) {
 	});
 
 	//REMOVE VEG FROM USER'S GARDEN
-	app.delete('/api/userveg', function(req, res, next) {
+	app.post('/api/remove-from-garden', function(req, res, next) {
 
-		// User.remove({"Garden":{"_id": this._id}});
+		console.log("vegid:" + req.body.vegId);
+		User.update({}, { $pull: { "Garden": {$in: [req.body.vegId]} }});
 		// User.remove({"Garden":{"Value": "59b887266e63e5a818f29ec6"}});
 
 	});
