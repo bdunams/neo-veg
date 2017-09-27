@@ -15,6 +15,13 @@ export default class MyGarden extends Component{
     
     this.state = {myVegetablesList: [], gardenData: ""}
   }
+
+  handleRemoveFromGarden(event){
+    event.preventDefault();
+    
+    axios.post('/api/remove-from-garden', {vegId: event.target._id.value})
+      .then((data) => { console.log(data)} );
+  }
   
   // Will run right before mounting component
   componentWillMount(){
@@ -37,35 +44,33 @@ export default class MyGarden extends Component{
           var HarvestEnd = moment(vegetable.HarvestEnd).format("MMMM DD");
           
           return(
-            <div key={vegetable._id} className="col-md-12 col-sm-12">
-              <div className="col-md-4">
+            <div key={vegetable._id} className="col-md-4">
                 <img src={imageUrl} className="img-responsive2" />
-              </div>
-              
-              <div className="col-md-8">
+
                 <h3>{vegetable.VegName}</h3>
                 
-                <div className="col-md-6">
-                  <h4>Tips</h4>
-                  <p>Spacing: {vegetable.Spacing}"</p>
-                  <p>Depth: {vegetable.Depth}"</p>
-                  <p>Fertilize: {vegetable.Fertilize}</p>
-                  <p>Water: {vegetable.Water}</p>
-                </div>
-                
-                <div className="col-md-6">
-                  <h4>Important Dates</h4>
-                  <p>
-                    Indoor Seeding: From {IndoorStart} to {IndoorEnd}
-                  </p>
-                  <p>
-                    Outdoor Planting/Seeding: From {OutdoorStart} to {OutdoorEnd}
-                  </p>
-                  <p>
-                    Harvest Time: From {HarvestStart} to {HarvestEnd}
-                  </p>
-                </div> 
-              </div>
+                <h4>--Tips--</h4>
+                <p>Spacing: {vegetable.Spacing}"</p>
+                <p>Depth: {vegetable.Depth}"</p>
+                <p>Fertilize: {vegetable.Fertilize}</p>
+                <p>Water: {vegetable.Water}</p>
+
+                <h4>--Important Dates--</h4>
+                <p>
+                  Indoor Seeding: From {IndoorStart} to {IndoorEnd}
+                </p>
+                <p>
+                  Outdoor Planting/Seeding: From {OutdoorStart} to {OutdoorEnd}
+                </p>
+                <p>
+                  Harvest Time: From {HarvestStart} to {HarvestEnd}
+                </p>
+
+                <form method="post" onSubmit={this.handleRemoveFromGarden}>
+                  <input type="hidden" name="_id" value={vegetable._id} />
+                  <button type="submit" className="btn btn-danger"></button>
+                </form>
+
               <hr />
             </div>
           )
@@ -91,6 +96,7 @@ export default class MyGarden extends Component{
           <div id="my-garden" className="container">
             <div className="row">
               {this.state.myVegetablesList}
+
             </div>
           </div>
         </div>
