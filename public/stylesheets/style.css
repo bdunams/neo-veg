@@ -215,8 +215,8 @@ footer ul li a {
 }
 
 footer ul li a:hover {
-	color: #3f7321;
-	background-color: #5c9d7d;
+	color: #d3d3d3;
+	background-color: gray;
 	transition: all 0.5s;
 }
 
@@ -309,13 +309,12 @@ footer ul li a:hover {
 	margin-top: 120px;
 }
 
-body{
+html {
 	background-image: url(../images/vegetables.png);
   background-repeat: no-repeat;
   background-attachment: static;
   background-position: center top -2%;
   background-size: 100%;
-
 }
 
 .carousel-inner {

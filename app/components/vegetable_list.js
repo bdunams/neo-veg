@@ -40,7 +40,7 @@ export default class Vegetable extends Component{
               <form method="post" onSubmit={this.handleAddToGarden}>
                 <input type="hidden" name="VegName" value={vegetable.VegName} />
                 <button type="submit" className="btn btn-success imageButton">+</button>
-                <button type="submit" className="btn btn-success imageButtonNegative">x</button>
+                <button type="submit" className="btn btn-danger imageButtonNegative">x</button>
               </form>
             </div>
           )
