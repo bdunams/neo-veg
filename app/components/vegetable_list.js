@@ -39,18 +39,8 @@ export default class Vegetable extends Component{
               <h4>{vegetable.VegName}</h4>
               <form method="post" onSubmit={this.handleAddToGarden}>
                 <input type="hidden" name="VegName" value={vegetable.VegName} />
-                <button type="submit" className="btn btn-success imageButton">+</button>
+                <button type="submit" className="btn btn-success"></button>
               </form>
-            <div>
-              <div className="card">
-                <img className="card-img-top" src="..." alt="Card image cap" />
-                <div className="card-body">
-                  <h4 className="card-title">{vegetable.VegName}</h4>
-                  <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                  <a href="#" className="btn btn-primary">Go somewhere</a>
-                </div>
-              </div>
-            </div>
             </div>
           )
 
