@@ -6,7 +6,7 @@
     padding: 0;
     z-index: 10000;
     transition: all 0.2s ease-in-out;
-    height: 85px;
+    height: 95px;
     background-color:transparent;  
     
     text-align: center;
@@ -99,6 +99,24 @@
 .navbar-toggler-icon{
 
 }
+
+
+.imageButton {
+  display:block;
+  height: 60px;
+  width: 60px;
+  border-radius: 50%;
+  font-family: Arial;
+  color: #ffffff;
+  font-size: 30px;
+  background: #34d939;
+  position: absolute;
+  bottom: 50px; /*your button position*/
+  right: 60px;  
+  box-shadow: 0px 0px 15px gray;
+}
+
+
 
 @media (min-width: 768px) {
     .header .navbar-brand {
@@ -253,4 +271,18 @@ footer ul li a:hover {
   position: relative;
   top: 120px;
   margin-bottom: 120px;
+  
+}
+
+body{
+	background-image: url(../images/vegetables.png);
+  background-repeat: no-repeat;
+  background-attachment: static;
+  background-position: center top -70px;
+  background-size: 100%;
+
+}
+
+.carousel-inner {
+	width: 100%;
 }
