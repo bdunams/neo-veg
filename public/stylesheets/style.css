@@ -320,6 +320,33 @@ background: url(../images/vegetables.png) fixed;
     background-repeat: no-repeat;
 }
 
+#aboutSection {
+	padding:5px;
+}
+#aboutSectionSub {
+	padding:10px;
+}
+
+.team-member {
+    margin-bottom: 50px;
+    text-align: center;
+}
+
+.team-member img {
+    margin: 0 auto;
+    border: 7px solid #fff;
+}
+
+.team-member h4 {
+    margin-top: 25px;
+    margin-bottom: 0;
+    text-transform: none;
+}
+
+.team-member p {
+    margin-top: 0;
+}
+
 .carousel-inner {
 	width: 100%;
 }
