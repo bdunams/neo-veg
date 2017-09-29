@@ -192,8 +192,41 @@ app.use(function(req, res, next) {
 	//REMOVE VEG FROM USER'S GARDEN
 	app.post('/api/remove-from-garden', function(req, res, next) {
 		console.log("vegid:" + req.body.vegId);
-		User.update({}, { $pull: { "Garden": {$in: [req.body.vegId]} }});
+		console.log("user:" + req.user._id);
+
+		User.findOneAndUpdate({"_id": req.user._id}, { $pull: { "Garden": req.body.vegId} }, function(err, data){
+			if(!err){
+				res.json(data);
+			}
+			
+			
+		});
+
+
+		// User.findOneAndUpdate({"_id": req.user._id}, { $pull: { "Garden": req.body.vegId }});
+		// User.findOneAndUpdate({"_id": req.user._id}, { $pull: { "Garden": {$in: [req.body.vegId]} }});
+		// User.findOneAndUpdate({"_id": req.user._id}, { $pull: { "Garden": new mongoose.Types.ObjectId(req.body.vegId) }});
+		// User.findOneAndUpdate({"_id": new mongoose.Types.ObjectId(req.user._id)}, { $pull: { "Garden": new mongoose.Types.ObjectId(req.body.vegId) }});
+		// User.update({"_id": new mongoose.Types.ObjectId(req.user._id)}, { $pull: { "Garden": new mongoose.Types.ObjectId(req.body.vegId) }});
+		// User.findOneAndRemove({_id: req.user._id}, { $pull: { "Garden": {$in: [req.body.vegId]} }});
+		// User.update({}, { $pull: { "Garden": req.body.vegId}});
 		// User.remove({"Garden":{"Value": "59b887266e63e5a818f29ec6"}});
+		// return Project.findById(req.params.id, function(err, project){
+  //        return project.remove(function(err){
+  //            if(!err) {
+  //                Assignment.update({_id: project.assignment}}, 
+  //                     {$pull: {projects: project._id}}, 
+  //                         function (err, numberAffected) {
+  //                           console.log(numberAffected);
+  //                     } else {
+  //                       console.log(err);                                      
+  //                   }
+  //                 });
+  //           });
+  //       });
+
+  		// User.findOneAndRemove({"Garden":{"Value": req.body.vegId}});
+		// User.update({}, { $pull: { "Garden": {$in: [req.body.vegId]} }});
 
 	});
 
