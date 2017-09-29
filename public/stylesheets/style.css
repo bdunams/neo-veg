@@ -309,12 +309,15 @@ footer ul li a:hover {
 	margin-top: 120px;
 }
 
-html {
-	background-image: url(../images/vegetables.png);
-  background-repeat: no-repeat;
-  background-attachment: static;
-  background-position: center top -2%;
-  background-size: 100%;
+body {
+
+background: url(../images/vegetables.png) fixed; 
+  	-webkit-background-size: cover;
+  	-moz-background-size: cover;
+  	-o-background-size: cover;
+  	background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
 }
 
 .carousel-inner {
