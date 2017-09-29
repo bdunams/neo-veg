@@ -37,16 +37,21 @@ export default class MyGarden extends Component{
         
         let vegetables = gardenData.map((vegetable) => {
           let imageUrl = `images/${vegetable.VegName}.jpg`;
-
-          var IndoorStart = moment(vegetable.IndoorSeedStart).format("MMMM DD");
-          var IndoorEnd = moment(vegetable.IndoorSeedEnd).format("MMMM DD");
+          if ( (! vegetable.IndoorSeedStart) || vegetable.IndoorStart === "FALSE" ) {
+            var IndoorStart = "--";
+            var IndoorEnd = "--";
+          }
+          else {
+            var IndoorStart = moment(vegetable.IndoorSeedStart).format("MMMM DD");
+            var IndoorEnd = moment(vegetable.IndoorSeedEnd).format("MMMM DD");
+          }
 
           var OutdoorStart = moment(vegetable.OutdoorSeedStart).format("MMMM DD");
           var OutdoorEnd = moment(vegetable.OutdoorSeedEnd).format("MMMM DD");
 
           var HarvestStart = moment(vegetable.HarvestStart).format("MMMM DD");
           var HarvestEnd = moment(vegetable.HarvestEnd).format("MMMM DD");
-          
+
           return(
             // <Vegetable id={vegetable.id} image={vegetable.image} >
             <div key={vegetable._id} className="col-md-4">

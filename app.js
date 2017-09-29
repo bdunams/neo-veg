@@ -203,43 +203,7 @@ app.use(function(req, res, next) {
 	});
 
 	//ADD DATES TO USER'S CALENDAR
-	// app.get('/api/calendar/', function (req, res, next){
-	// 	if( ! req.user ) res.redirect('/');
-	// 	if(req.user){
-	// 		User
-	// 			.findOne()
-	// 			.where(req.user._id)
-	// 			.populate('Garden')
-	// 			.exec(function(err, data){
-	// 				console.log('Garden');
-	// 				let calendar = {};
-	// 				data.Garden.forEach(function(item){
-	// 					calendar[item.VegName] = [];
 
-	// 	    			calendar[item.VegName][0] = {
-	// 						title: "Indoor",
-	// 						start: item.IndoorSeedStart,
-	// 						end: item.IndoorSeedEnd
-	// 					}
-
-	// 					calendar[item.VegName][1] = {
-	// 						title: "Outdoor",
-	// 	                    start: item.OutdoorSeedStart,
-	// 	                    end: item.OutdoorSeedEnd
-	// 					}
-
-	// 					calendar[item.VegName][2] = {
-	// 						title: "Harvest",
-	// 	                    start: item.HarvestStart,
-	// 	                    end: item.HarvestEnd
-	// 					}
-	// 				});
-
-	// 				data = calendar;
-	// 				res.send(data); 
-	// 			});
-	// 	}
-	// });
 
   app.use('/', function(req, res, next) {
       console.log(req.user, "REQ.USER");
