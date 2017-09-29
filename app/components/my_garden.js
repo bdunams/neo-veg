@@ -13,7 +13,7 @@ export default class MyGarden extends Component{
   constructor(props){
     super(props)
     
-    this.state = {myVegetablesList: [], gardenData: "", removedVeg: false};
+    this.state = {myVegetablesList: [], gardenData: ""};
     this.handleRemoveFromGarden = this.handleRemoveFromGarden.bind(this);
   }
 
@@ -22,16 +22,13 @@ export default class MyGarden extends Component{
     
     axios.post('/api/remove-from-garden', {vegId: event.target._id.value})
       .then((data) => { 
-
-          console.log(data);
           if(data){
-            this.setState({removedVeg:true});
+            this.loadVegetables();
           }
       } );
   }
-  
-  // Will run right before mounting component
-  componentWillMount(){
+
+  loadVegetables(){
     axios.get('/api/user-veg').then((response) => {
       console.log(response);
       let gardenData = response.data.Garden;
@@ -51,6 +48,7 @@ export default class MyGarden extends Component{
           var HarvestEnd = moment(vegetable.HarvestEnd).format("MMMM DD");
           
           return(
+            // <Vegetable id={vegetable.id} image={vegetable.image} >
             <div key={vegetable._id} className="col-md-4">
                 <img src={imageUrl} className="img-responsive2" />
 
@@ -87,7 +85,11 @@ export default class MyGarden extends Component{
         this.setState({ myVegetablesList: vegetables, gardenData: gardenData });
       }
     })
-    
+  }
+  
+  // Will run right before mounting component
+  componentWillMount(){
+    this.loadVegetables();
   }
 
   // Render Component
