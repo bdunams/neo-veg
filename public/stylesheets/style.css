@@ -274,11 +274,13 @@ footer ul li a:hover {
 /* Shift Pages down a bit */
 
 #calendar{
-  margin-top: 120px;
+	margin-top: 120px;
+	margin-bottom: 120px;
 }
 
 #my-garden{
-  margin-top: 120px;
+	margin-top: 120px;
+	margin-bottom: 120px;
 }
 
 #all-plants{
@@ -288,10 +290,12 @@ footer ul li a:hover {
 
 #subscription{
 	margin-top: 120px;
+	margin-bottom: 120px;
 }
 
 #about-us{
 	margin-top: 120px;
+	margin-bottom: 120px;
 }
 
 body{
