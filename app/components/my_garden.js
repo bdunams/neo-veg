@@ -13,18 +13,22 @@ export default class MyGarden extends Component{
   constructor(props){
     super(props)
     
-    this.state = {myVegetablesList: [], gardenData: ""}
+    this.state = {myVegetablesList: [], gardenData: ""};
+    this.handleRemoveFromGarden = this.handleRemoveFromGarden.bind(this);
   }
 
   handleRemoveFromGarden(event){
     event.preventDefault();
     
     axios.post('/api/remove-from-garden', {vegId: event.target._id.value})
-      .then((data) => { console.log(data)} );
+      .then((data) => { 
+          if(data){
+            this.loadVegetables();
+          }
+      } );
   }
-  
-  // Will run right before mounting component
-  componentWillMount(){
+
+  loadVegetables(){
     axios.get('/api/user-veg').then((response) => {
       console.log(response);
       let gardenData = response.data.Garden;
@@ -33,17 +37,23 @@ export default class MyGarden extends Component{
         
         let vegetables = gardenData.map((vegetable) => {
           let imageUrl = `images/${vegetable.VegName}.jpg`;
-
-          var IndoorStart = moment(vegetable.IndoorSeedStart).format("MMMM DD");
-          var IndoorEnd = moment(vegetable.IndoorSeedEnd).format("MMMM DD");
+          if ( (! vegetable.IndoorSeedStart) || vegetable.IndoorStart === "FALSE" ) {
+            var IndoorStart = "--";
+            var IndoorEnd = "--";
+          }
+          else {
+            var IndoorStart = moment(vegetable.IndoorSeedStart).format("MMMM DD");
+            var IndoorEnd = moment(vegetable.IndoorSeedEnd).format("MMMM DD");
+          }
 
           var OutdoorStart = moment(vegetable.OutdoorSeedStart).format("MMMM DD");
           var OutdoorEnd = moment(vegetable.OutdoorSeedEnd).format("MMMM DD");
 
           var HarvestStart = moment(vegetable.HarvestStart).format("MMMM DD");
           var HarvestEnd = moment(vegetable.HarvestEnd).format("MMMM DD");
-          
+
           return(
+            // <Vegetable id={vegetable.id} image={vegetable.image} >
             <div key={vegetable._id} className="col-md-4">
                 <img src={imageUrl} className="img-responsive2" />
 
@@ -66,7 +76,7 @@ export default class MyGarden extends Component{
                   Harvest Time: From {HarvestStart} to {HarvestEnd}
                 </p>
 
-                <form method="post" onSubmit={this.handleRemoveFromGarden}>
+                <form method="post" onSubmit={this.handleRemoveFromGarden.bind(this)}>
                   <input type="hidden" name="_id" value={vegetable._id} />
                   <button type="submit" className="btn btn-danger"></button>
                 </form>
@@ -80,7 +90,11 @@ export default class MyGarden extends Component{
         this.setState({ myVegetablesList: vegetables, gardenData: gardenData });
       }
     })
-    
+  }
+  
+  // Will run right before mounting component
+  componentWillMount(){
+    this.loadVegetables();
   }
 
   // Render Component
