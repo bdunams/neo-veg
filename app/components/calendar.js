@@ -24,8 +24,14 @@ export default class MyGarden extends Component{
 
       calData[item.VegName] = [];
 
-      var IndoorStart = moment(item.IndoorSeedStart).format("MM-DD");
-      var IndoorShortRange = moment(IndoorStart).add(1, 'w').format("MM-DD");
+      if ( (! item.IndoorSeedStart) || item.IndoorStart === "FALSE" ) {
+        var IndoorStart = "--";
+        var IndoorShortRange = "--";
+      }
+      else{
+        var IndoorStart = moment(item.IndoorSeedStart).format("MM-DD");
+        var IndoorShortRange = moment(IndoorStart).add(1, 'w').format("MM-DD");
+      }
 
       var OutdoorStart = moment(item.OutdoorSeedStart).format("MM-DD");
       var OutdoorShortRange = moment(OutdoorStart).add(7, 'days').format("MM-DD");
