@@ -129,7 +129,22 @@
   position: absolute;
   bottom: 50px; /*your button position*/
   right: 60px;  
-  box-shadow: 0px 0px 15px gray;
+  box-shadow: 0px 0px 15px black;
+}
+
+.imageButtonNegative {
+  display:block;
+  height: 60px;
+  width: 60px;
+  border-radius: 50%;
+  font-family: Arial;
+  color: #ffffff;
+  font-size: 30px;
+  background: red;
+  position: absolute;
+  bottom: 50px; /*your button position*/
+  right: 280px;  
+  box-shadow: 0px 0px 15px black;
 }
 
 
@@ -200,8 +215,8 @@ footer ul li a {
 }
 
 footer ul li a:hover {
-	color: #3f7321;
-	background-color: #5c9d7d;
+	color: #d3d3d3;
+	background-color: gray;
 	transition: all 0.5s;
 }
 
@@ -294,13 +309,42 @@ footer ul li a:hover {
 	margin-top: 120px;
 }
 
-body{
-	background-image: url(../images/vegetables.png);
-  background-repeat: no-repeat;
-  background-attachment: static;
-  background-position: center top -2%;
-  background-size: 100%;
+body {
 
+background: url(../images/vegetables.png) fixed; 
+  	-webkit-background-size: cover;
+  	-moz-background-size: cover;
+  	-o-background-size: cover;
+  	background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+
+#aboutSection {
+	padding:5px;
+}
+#aboutSectionSub {
+	padding:10px;
+}
+
+.team-member {
+    margin-bottom: 50px;
+    text-align: center;
+}
+
+.team-member img {
+    margin: 0 auto;
+    border: 7px solid #fff;
+}
+
+.team-member h4 {
+    margin-top: 25px;
+    margin-bottom: 0;
+    text-transform: none;
+}
+
+.team-member p {
+    margin-top: 0;
 }
 
 .carousel-inner {
