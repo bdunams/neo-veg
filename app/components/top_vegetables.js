@@ -10,7 +10,7 @@ export default class TopVegetables extends Component{
   // Here we render component
   render() {
     return (
-      <div className="row">
+      <div>
         <div className="container text-center">
           <h2>Vegetables in Season Now</h2>
       
