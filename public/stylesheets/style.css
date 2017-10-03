@@ -10,7 +10,7 @@
     background-color:transparent;  
     
     text-align: center;
-    line-height: 55px;
+    /* line-height: 55px; */
 }
 
 .navbar-inverse .navbar-brand, .navbar-inverse .navbar-nav>li>a {
@@ -46,7 +46,7 @@
 
 .header.active .navbar-nav>li>a {
 	font-size: 13px;
-	font-weight: 450;
+	font-weight: 400;
 	text-transform: uppercase;
 	text-shadow: none;
 	color: #121212!important;
@@ -337,6 +337,8 @@ footer ul li a:hover {
 		padding: 0px;
 		margin-top: 0px;
 		margin-top: 0px;
+		background-color: white;
+		opacity: .95;
 	}
 	.navbar-nav>li {
 		margin-left: 0px;
@@ -346,8 +348,22 @@ footer ul li a:hover {
 		border-bottom: none;
 	}
 	.navbar-nav>li>a {
-		line-height: 50px;
+		line-height: 30px;
+		font-weight: 500;
 		color: #121212!important;
+	}
+
+	.img-fluid {
+		max-width: 250%;
+	}
+
+	.navbar-light .navbar-nav .nav-link {
+		width: 100%;
+	}
+
+	/* Navbar Collapse Icon */
+	.navbar-inverse .navbar-toggle {
+		margin-top: 0px;
 	}
 }
 
@@ -393,11 +409,13 @@ footer ul li a:hover {
 /* Shift Pages down a bit */
 
 #calendar{
-  margin-top: 120px;
+	margin-top: 120px;
+	margin-bottom: 120px;
 }
 
 #my-garden{
-  margin-top: 120px;
+	margin-top: 120px;
+	margin-bottom: 120px;
 }
 
 #all-plants{
@@ -407,10 +425,12 @@ footer ul li a:hover {
 
 #subscription{
 	margin-top: 120px;
+	margin-bottom: 120px;
 }
 
 #about-us{
 	margin-top: 120px;
+	margin-bottom: 120px;
 }
 
 body {
