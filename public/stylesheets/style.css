@@ -340,11 +340,20 @@ background: url(../images/vegetables.png) fixed;
     background-repeat: no-repeat;
 }
 
-#aboutSection {
-	padding:5px;
+.aboutSection {
+	padding-bottom:70px;
+	padding-left:20px;
+	padding-right:20px;
+	line-height: 38px;
 }
-#aboutSectionSub {
+#aboutSection {
+	padding:2px;
+	padding-top: 80px;
+	font-weight: 900;
+}
+.aboutSectionSub {
 	padding:10px;
+	font-size: 220%;
 }
 
 .team-member {
@@ -352,10 +361,6 @@ background: url(../images/vegetables.png) fixed;
     text-align: center;
 }
 
-.team-member img {
-    margin: 0 auto;
-    border: 7px solid #fff;
-}
 
 .team-member h4 {
     margin-top: 25px;

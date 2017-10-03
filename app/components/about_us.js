@@ -6,24 +6,33 @@ const AboutUs = () =>{
   return(
     <div id="about-us" className="container">
 
-	    <div id="our-mission" className="container">
-	      	<section id="mission" className="bg-light-gray">
+	    <div id="about-neoveg" className="container">
+	      	<section id="aboutNEOVEG" className="bg-light-gray">
 					<div className="container">
 						<div className="row">
 							<div className="col-lg-12 text-center">
-								<h1 className="section-heading" id="aboutSection">About Us</h1>
-								<h3 className="section-subheading text-muted" id="aboutSectionSub">We make gardening easy.</h3>
+								<h1 className="section-heading" id="aboutSection">ABOUT NEOVEG</h1>
+								<h3 className="section-subheading text-muted aboutSectionSub" id="aboutSectionSub">We are Your Personal Garden Assistant</h3>
+
+								<p className="aboutSection">
+								At NEOVEG, we value your vegetables. As for fruits… we’re getting there. 
+
+								NEOVEG gives you the optimum milestone reminders to ensure your vegetables are given the proper care they require.
+								 From seeding to harvesting, we provide a reminder system for each vegetable that you add to “MyGarden”. 
+								 Once you add a vegetable to MyGarden, it is automatically added to your calendar which is preset with dates for optimal VegCare™. 
+								 Now you can finally plant your garden and have the peace of mind knowing you will never forget an important date in your #VegLife. 
+								</p>
 							</div>
 						</div>
 					</div>
 			</section>
 		</div>
-      	<section id="team" className="bg-light-gray">
+      	<section id="team">
 				<div className="container">
 					<div className="row">
 						<div className="col-lg-12 text-center">
 							<h1 className="section-heading" id="aboutSection">The Team</h1>
-							<h3 className="section-subheading text-muted" id="aboutSectionSub">WE LOVE VEGETABLES</h3>
+							<h3 className="section-subheading text-muted aboutSectionSub" id="aboutSectionSub">WE LOVE VEGETABLES</h3>
 						</div>
 					</div>
 					<div className="row">
@@ -70,7 +79,7 @@ const AboutUs = () =>{
 						<div className="row">
 							<div className="col-lg-12 text-center">
 								<h1 className="section-heading" id="aboutSection">Our Mission</h1>
-								<h3 className="section-subheading text-muted" id="aboutSectionSub">Vegetation Nation</h3>
+								<h3 className="section-subheading text-muted aboutSectionSub" id="aboutSectionSub">Provide an enjoyable gardening experience and change the world!</h3>
 							</div>
 						</div>
 					</div>
@@ -78,6 +87,7 @@ const AboutUs = () =>{
 		</div>
 
     </div>
+
   )
 }
 
