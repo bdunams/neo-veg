@@ -36,7 +36,7 @@ class Navbar extends Component{
                   <NavLink to={'/my-garden'} exact className="nav-link">My Garden</NavLink>
                 </li>
                 <li className="nav-item">
-                  <NavLink to={'/about-us'} exact className="nav-link">About Us</NavLink>
+                  <NavLink className="nav-link">About Us</NavLink>
                 </li>
                 <li className="nav-item">
                   <NavLink to={'/subscription'} exact className="nav-link">Subscription</NavLink>
