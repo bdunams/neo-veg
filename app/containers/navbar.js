@@ -17,7 +17,7 @@ class Navbar extends Component{
           <div className="container">
             <nav className="navbar navbar-expand-lg navbar-light navbar-inverse">
             <h2 className="navbar-brand brand-name">
-               <a href="index.html"><img className="img-responsive2"       
+               <a href="/"><img className="img-responsive2"       
                src="images/white_logo.png"/></a>
               </h2>
             <button className="navbar-toggler navbar-toggle" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -35,11 +35,17 @@ class Navbar extends Component{
                 <li className="nav-item">
                   <NavLink to={'/my-garden'} exact className="nav-link">My Garden</NavLink>
                 </li>
+                <li className="nav-item">
+                  <NavLink className="nav-link">About Us</NavLink>
+                </li>
+                <li className="nav-item">
+                  <NavLink to={'/subscription'} exact className="nav-link">Subscription</NavLink>
+                </li>
               </ul>
 
               <ul className="nav navbar-nav navbar-right">
                 <li className="nav-item">
-                  <span className="navbar-brand">Welcome {this.props.user.Name}</span>
+                  <span id="nav-name" className="text-center">Welcome {this.props.user.Name}</span>
                 </li>
                 <li className="nav-item">
                   <a className="btn btn-primary" href="/logout">Log Out</a>
@@ -59,7 +65,7 @@ class Navbar extends Component{
           <div className="container">
             <nav className="navbar navbar-expand-lg navbar-light navbar-inverse">
               <h2 className="navbar-brand brand-name">
-               <a href="index.html"><img className="img-responsive2"       
+               <a href="/"><img className="img-responsive2"       
                src="images/white_logo.png"/></a>
               </h2>
               <button className="navbar-toggler navbar-toggle" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -75,7 +81,10 @@ class Navbar extends Component{
                       <NavLink to={'/vegetables'} exact className="nav-link">Plants</NavLink>
                     </li>
                     <li className="nav-item">
-                      <a className="nav-link disabled" href="#">Disabled</a>
+                      <NavLink to={'/about-us'} exact className="nav-link">About Us</NavLink>
+                    </li>
+                    <li className="nav-item">
+                      <NavLink to={'/subscription'} exact className="nav-link">Subscription</NavLink>
                     </li>
                   </ul>
 

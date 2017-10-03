@@ -190,71 +190,20 @@ app.use(function(req, res, next) {
 	});
 
 	//REMOVE VEG FROM USER'S GARDEN
-	app.delete('/api/userveg', function(req, res, next) {
+	app.post('/api/remove-from-garden', function(req, res, next) {
+		console.log("vegid:" + req.body.vegId);
+		console.log("user:" + req.user._id);
 
-		// User.remove({"Garden":{"_id": this._id}});
-		// User.remove({"Garden":{"Value": "59b887266e63e5a818f29ec6"}});
+		User.findOneAndUpdate({"_id": req.user._id}, { $pull: { "Garden": req.body.vegId} }, function(err, data){
+			if(!err){
+				res.json(data);
+			}
+		});
 
 	});
 
 	//ADD DATES TO USER'S CALENDAR
-	app.get('/api/calendar/', function (req, res, next){
-		if( ! req.user ) res.redirect('/');
-		if(req.user){
-			User
-				.findOne()
-				.where(req.user._id)
-				.populate('Garden')
-				.exec(function(err, data){
-					console.log('Garden');
-					let calendar = {};
-					data.Garden.forEach(function(item){
-						calendar[item.VegName] = [];
 
-		    			calendar[item.VegName][0] = {
-							title: "Indoor",
-							start: item.IndoorSeedStart,
-							end: item.IndoorSeedEnd
-						}
-
-						calendar[item.VegName][1] = {
-							title: "Outdoor",
-		                    start: item.OutdoorSeedStart,
-		                    end: item.OutdoorSeedEnd
-						}
-
-						calendar[item.VegName][2] = {
-							title: "Harvest",
-		                    start: item.HarvestStart,
-		                    end: item.HarvestEnd
-						}
-					});
-
-					data = calendar;
-					res.send(data); 
-				});
-
-	  //         //   	$('#calendar').fullCalendar({
-		 //         //    	Veg.VegName: [{
-		 //         //            title: 'Indoor',
-		 //         //            start: Veg.IndoorSeedStart,
-		 //         //            end: Veg.IndoorSeedEnd
-		 //         //        },
-		 //         //        {
-		 //         //            title: 'Outdoor',
-		 //         //            start: Veg.OutdoorSeedStart,
-		 //         //            end: Veg.OutdoorSeedEnd
-		 //         //        },
-		 //         //        {
-		 //         //            title: 'Harvest',
-		 //         //            start: Veg.HarvestStart,
-		 //         //            end: Veg.HarvestEnd
-		 //         //        }]
-	  //       		// });
-	  //           }
-			// });
-		}
-	});
 
   app.use('/', function(req, res, next) {
       console.log(req.user, "REQ.USER");

@@ -13,11 +13,22 @@ export default class MyGarden extends Component{
   constructor(props){
     super(props)
     
-    this.state = {myVegetablesList: [], gardenData: ""}
+    this.state = {myVegetablesList: [], gardenData: ""};
+    this.handleRemoveFromGarden = this.handleRemoveFromGarden.bind(this);
   }
-  
-  // Will run right before mounting component
-  componentWillMount(){
+
+  handleRemoveFromGarden(event){
+    event.preventDefault();
+    
+    axios.post('/api/remove-from-garden', {vegId: event.target._id.value})
+      .then((data) => { 
+          if(data){
+            this.loadVegetables();
+          }
+      } );
+  }
+
+  loadVegetables(){
     axios.get('/api/user-veg').then((response) => {
       console.log(response);
       let gardenData = response.data.Garden;
@@ -26,46 +37,50 @@ export default class MyGarden extends Component{
         
         let vegetables = gardenData.map((vegetable) => {
           let imageUrl = `images/${vegetable.VegName}.jpg`;
-
-          var IndoorStart = moment(vegetable.IndoorSeedStart).format("MMMM DD");
-          var IndoorEnd = moment(vegetable.IndoorSeedEnd).format("MMMM DD");
+          if ( (! vegetable.IndoorSeedStart) || vegetable.IndoorStart === "FALSE" ) {
+            var IndoorStart = "--";
+            var IndoorEnd = "--";
+          }
+          else {
+            var IndoorStart = moment(vegetable.IndoorSeedStart).format("MMMM DD");
+            var IndoorEnd = moment(vegetable.IndoorSeedEnd).format("MMMM DD");
+          }
 
           var OutdoorStart = moment(vegetable.OutdoorSeedStart).format("MMMM DD");
           var OutdoorEnd = moment(vegetable.OutdoorSeedEnd).format("MMMM DD");
 
           var HarvestStart = moment(vegetable.HarvestStart).format("MMMM DD");
           var HarvestEnd = moment(vegetable.HarvestEnd).format("MMMM DD");
-          
+
           return(
-            <div key={vegetable._id} className="col-md-12 col-sm-12">
-              <div className="col-md-4">
+            // <Vegetable id={vegetable.id} image={vegetable.image} >
+            <div key={vegetable._id} className="col-md-4">
                 <img src={imageUrl} className="img-responsive2" />
-              </div>
-              
-              <div className="col-md-8">
+
                 <h3>{vegetable.VegName}</h3>
                 
-                <div className="col-md-6">
-                  <h4>Tips</h4>
-                  <p>Spacing: {vegetable.Spacing}"</p>
-                  <p>Depth: {vegetable.Depth}"</p>
-                  <p>Fertilize: {vegetable.Fertilize}</p>
-                  <p>Water: {vegetable.Water}</p>
-                </div>
-                
-                <div className="col-md-6">
-                  <h4>Important Dates</h4>
-                  <p>
-                    Indoor Seeding: From {IndoorStart} to {IndoorEnd}
-                  </p>
-                  <p>
-                    Outdoor Seeding: From {OutdoorStart} to {OutdoorEnd}
-                  </p>
-                  <p>
-                    Harvest Time: From {HarvestStart} to {HarvestEnd}
-                  </p>
-                </div> 
-              </div>
+                <h4>--Tips--</h4>
+                <p>Spacing: {vegetable.Spacing}"</p>
+                <p>Depth: {vegetable.Depth}"</p>
+                <p>Fertilize: {vegetable.Fertilize}</p>
+                <p>Water: {vegetable.Water}</p>
+
+                <h4>--Important Dates--</h4>
+                <p>
+                  Indoor Seeding: From {IndoorStart} to {IndoorEnd}
+                </p>
+                <p>
+                  Outdoor Planting/Seeding: From {OutdoorStart} to {OutdoorEnd}
+                </p>
+                <p>
+                  Harvest Time: From {HarvestStart} to {HarvestEnd}
+                </p>
+
+                <form method="post" onSubmit={this.handleRemoveFromGarden.bind(this)}>
+                  <input type="hidden" name="_id" value={vegetable._id} />
+                  <button type="submit" className="btn btn-danger"></button>
+                </form>
+
               <hr />
             </div>
           )
@@ -75,7 +90,11 @@ export default class MyGarden extends Component{
         this.setState({ myVegetablesList: vegetables, gardenData: gardenData });
       }
     })
-    
+  }
+  
+  // Will run right before mounting component
+  componentWillMount(){
+    this.loadVegetables();
   }
 
   // Render Component
@@ -91,6 +110,7 @@ export default class MyGarden extends Component{
           <div id="my-garden" className="container">
             <div className="row">
               {this.state.myVegetablesList}
+
             </div>
           </div>
         </div>

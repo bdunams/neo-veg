@@ -34,12 +34,13 @@ export default class Vegetable extends Component{
           let imageUrl = `images/${vegetable.VegName}.jpg`;
           
           return(
-            <div key={vegetable._id} className="col-md-4 col-sm-2">
-              <img src={imageUrl} className="img-responsive" />
+            <div key={vegetable._id} className="col-md-4 col-sm-2 wrapper">
+              <img src={imageUrl} className="img-responsive veggieName" />
               <h4>{vegetable.VegName}</h4>
               <form method="post" onSubmit={this.handleAddToGarden}>
                 <input type="hidden" name="VegName" value={vegetable.VegName} />
-                <button type="submit" className="btn btn-success"></button>
+                <button type="submit" className="btn btn-success imageButton">+</button>
+                <button type="submit" className="btn btn-danger imageButtonNegative">x</button>
               </form>
             </div>
           )

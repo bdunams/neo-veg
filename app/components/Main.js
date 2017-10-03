@@ -9,6 +9,8 @@ import TopVegetablesList from './top_vegetables';
 import Navbar from '../containers/navbar';
 import Vegetables from './vegetable_list';
 import MyGarden from './my_garden';
+import AboutUs from './about_us';
+import Subscription from './subscription';
 
 
 // Helper Functions
@@ -49,6 +51,8 @@ export default class Main extends Component{
             <Route exact path='/' component={CenterPiece} />
             <Route path='/vegetables' component={Vegetables}/>
             <Route path='/my-garden' component={MyGarden}/>
+            <Route path='/about-us' component={AboutUs}/>
+            <Route path='/subscription' component={Subscription}/>
           
         </Switch>
       </div>
