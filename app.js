@@ -57,7 +57,9 @@ app.use(function(req, res, next) {
 	var Veg = require("./models/veg.js");
 
 // MONGODB CONFIGURATION//
-	mongoose.connect("mongodb://localhost/neoveg");
+	mongoose.connect("mongodb://localhost/neoveg", {
+		useMongoClient: true
+	});
 	var db = mongoose.connection;
 
 	db.on("error", function(err) {
