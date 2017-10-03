@@ -14,6 +14,9 @@
   // App Authentication (Google OAuth 2.0)
 const googleOAuth2 = require('./authentication/googleOAuth2');
 
+// Email
+const email = require('./email');
+
 var app = express();
 var PORT = process.env.PORT || 8080;
 
