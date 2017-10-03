@@ -35,12 +35,11 @@ export default class Vegetable extends Component{
           
           return(
             <div key={vegetable._id} className="col-md-4 col-sm-2 wrapper">
-              <img src={imageUrl} className="img-responsive veggieName" />
+              <img src={imageUrl} className="img-responsive veggieImage" />
               <h4>{vegetable.VegName}</h4>
               <form method="post" onSubmit={this.handleAddToGarden}>
                 <input type="hidden" name="VegName" value={vegetable.VegName} />
                 <button type="submit" className="btn btn-success imageButton">+</button>
-                <button type="submit" className="btn btn-danger imageButtonNegative">x</button>
               </form>
             </div>
           )
