@@ -164,38 +164,7 @@ app.use(function(req, res, next) {
 		
 	});
 
-	//ADD VEG TO USER'S GARDEN
-	// app.post('/api/add-to-garden', function(req, res, next) {
-
- //      if(req.user){
- //        console.log(req.body)
- //        Veg.findOne({ VegName: req.body.vegetableName})
- //        .exec(function(err, doc) {
- //    		if (err) {
- //      		  console.log(err);
- //    		}
-	// 	    else {
- //              User.findOneAndUpdate({ _id : req.user._id }, { $push: { "Garden": doc._id }})
- //                .exec(function(err, doc) {
- //                    if (err) {
- //                        console.log(err);
- //                    }
- //                    else {
- //                        res.json(doc);
- //                    }
- //                });
- //            }
- //        });            
- //      }
- //      else{
- //        // No user is logged in
- //        res.json({ user: false });
- //      }
-
-	// });
-
-
-//TEST ----- ADD VEG TO USER'S GARDEN
+//ADD VEG TO USER'S GARDEN
 	app.post('/api/add-to-garden', function(req, res, next) {
 
 	  //check if user is logged in
@@ -217,7 +186,7 @@ app.use(function(req, res, next) {
 
 			        		if( carry ) 
 			        			return carry;
-			        		
+
 			        		if( next.toString() === req.body.vegId )
 			        			return next;
 
