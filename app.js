@@ -165,27 +165,85 @@ app.use(function(req, res, next) {
 	});
 
 	//ADD VEG TO USER'S GARDEN
+	// app.post('/api/add-to-garden', function(req, res, next) {
+
+ //      if(req.user){
+ //        console.log(req.body)
+ //        Veg.findOne({ VegName: req.body.vegetableName})
+ //        .exec(function(err, doc) {
+ //    		if (err) {
+ //      		  console.log(err);
+ //    		}
+	// 	    else {
+ //              User.findOneAndUpdate({ _id : req.user._id }, { $push: { "Garden": doc._id }})
+ //                .exec(function(err, doc) {
+ //                    if (err) {
+ //                        console.log(err);
+ //                    }
+ //                    else {
+ //                        res.json(doc);
+ //                    }
+ //                });
+ //            }
+ //        });            
+ //      }
+ //      else{
+ //        // No user is logged in
+ //        res.json({ user: false });
+ //      }
+
+	// });
+
+
+//TEST ----- ADD VEG TO USER'S GARDEN
 	app.post('/api/add-to-garden', function(req, res, next) {
 
+	  //check if user is logged in
       if(req.user){
-        console.log(req.body)
         Veg.findOne({ VegName: req.body.vegetableName})
         .exec(function(err, doc) {
     		if (err) {
       		  console.log(err);
     		}
 		    else {
-              User.findOneAndUpdate({ _id : req.user._id }, { $push: { "Garden": doc._id }})
-                .exec(function(err, doc) {
-                    if (err) {
-                        console.log(err);
-                    }
-                    else {
-                        res.json(doc);
-                    }
-                });
-            }
-        });            
+		      User.findOne({_id : req.user._id})
+		        .exec(function(err, user){
+			      if (err) {
+			          console.log(err);
+			        }
+			        //check each veg id in user's garden for any matches to the veg selected
+			        else {
+			        	let hasGarden = user.Garden.reduce((carry, next) => {
+
+			        		if( carry ) 
+			        			return carry;
+			        		
+			        		if( next.toString() === req.body.vegId )
+			        			return next;
+
+			        		return carry;
+			        	}, null);
+
+		        		//if the vegetable has an existing match in the user's garden
+		        		if( hasGarden ){
+		        			console.log("This vegetable is already in your garden.");
+		        		}
+		        		//if the vegetable had not yet been added, add it
+		        		else {
+		        			User.findOneAndUpdate({ _id : req.user._id }, { $push: { "Garden": req.body.vegId }})
+			                .exec(function(err, doc) {
+			                    if (err) {
+			                        console.log(err);
+			                    }
+			                    else {
+			                        res.json(doc);
+			                    }
+			                });
+		        		}
+            		}
+        		});            
+      		}
+      	});
       }
       else{
         // No user is logged in
@@ -196,8 +254,8 @@ app.use(function(req, res, next) {
 
 	//REMOVE VEG FROM USER'S GARDEN
 	app.post('/api/remove-from-garden', function(req, res, next) {
-		console.log("vegid:" + req.body.vegId);
-		console.log("user:" + req.user._id);
+		// console.log("vegid:" + req.body.vegId);
+		// console.log("user:" + req.user._id);
 
 		User.findOneAndUpdate({"_id": req.user._id}, { $pull: { "Garden": req.body.vegId} }, function(err, data){
 			if(!err){
