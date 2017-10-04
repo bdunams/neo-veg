@@ -140,6 +140,90 @@
   box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.1);
 }
 
+.homeImages {
+	float: left; 
+	width: 96%; 
+}
+
+
+.service-item {
+	cursor: pointer;
+	background-color: #fff;
+	text-align: center;
+	padding: 30px 20px;
+	transition: all 0.7s;
+	box-shadow: 0px 0px 15px #cdcdcd;
+}
+
+.service-item:hover {
+	background-color: #a2cf8d;
+}
+
+.service-item h4 {
+	font-size: 16px;
+	font-weight: 700;
+	letter-spacing: 0.5px;
+	margin-bottom: 15px;
+	margin-top: 25px;
+}
+
+.service-item:hover h4 {
+	color: #fff;
+}
+
+.service-item:hover p {
+	color: #fff;
+}
+
+.first-service .icon {
+	background-image: url(../img/first-service-main.png);
+	height: 32px;
+	width: 32px;
+	display: inline-block;
+}
+
+.first-service:hover .icon {
+	background-image: url(../img/first-service-white.png);
+}
+
+.second-service .icon {
+	background-image: url(../img/second-service-main.png);
+	height: 32px;
+	width: 22px;
+	display: inline-block;
+}
+
+.second-service:hover .icon {
+	background-image: url(../img/second-service-white.png);
+}
+
+.third-service .icon {
+	background-image: url(../img/third-service-main.png);
+	height: 32px;
+	width: 32px;
+	display: inline-block;
+}
+
+.third-service:hover .icon {
+	background-image: url(../img/third-service-white.png);
+}
+
+.fourth-service .icon {
+	background-image: url(../img/fourth-service-main.png);
+	height: 32px;
+	width: 32px;
+	display: inline-block;
+}
+
+.fourth-service:hover .icon {
+	background-image: url(../img/fourth-service-white.png);
+}
+
+.cardSpacing {
+	padding-top: 2em;
+}
+
+
 .calendarStyle {
 	padding-top: 2em;
 }

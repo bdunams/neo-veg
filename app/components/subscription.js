@@ -21,7 +21,116 @@ export default class Subscription extends Component{
         <div id="subscription" className="container">
             <h2>Start your subscription today!</h2>
             <h3>Some marketing and a chart</h3>
+
+      <div className="container content">
+        <div className="row">
+          <div className="col-md-3">
+            <div className="pricing hover-effect">
+              <div className="pricing-head">
+                <h3>Beginner <span>
+                For You Sprouts Out There </span>
+                </h3>
+                <h4>FREE
+                <br />
+                </h4>
+              </div>
+              <ul className="pricing-content list-unstyled">
+                <li>
+                  Calendar Access
+                </li>
+                <li>
+                  Milestone Reminders
+                </li>
+              </ul>
+              <div className="pricing-footer">
+                <p>
+                   Give it a try! You have nothing to lose. 
+                </p>
+                <a href="javascript:;" className="btn yellow-crusta">
+                Sign Up
+                </a>
+              </div>
+            </div>
+          </div>
+          <div className="col-md-3">
+            <div className="pricing hover-effect">
+              <div className="pricing-head">
+                <h3>Pro <span>
+                Grow like a Pro </span>
+                </h3>
+                <h4><i>$</i>9<i>.99</i>
+                <span>
+                Per Month </span>
+                </h4>
+              </div>
+              <ul className="pricing-content list-unstyled">
+                <li>
+                  Calendar Access
+                </li>
+                <li>
+                  Milestone Reminders
+                </li>
+                <li>
+                  Fusce condimentum
+                </li>
+                <li>
+                  Ut non libero
+                </li>
+                <li>
+                  Consecte adiping elit
+                </li>
+              </ul>
+              <div className="pricing-footer">
+                <p>
+                   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut non libero magna psum olor .
+                </p>
+                <a href="javascript:;" className="btn yellow-crusta">
+                Sign Up
+                </a>
+              </div>
+            </div>
+          </div>
+          <div className="col-md-3">
+            <div className="pricing pricing-active hover-effect">
+              <div className="pricing-head pricing-head-active">
+                <h3>Expert <span>
+                The Green Thumb </span>
+                </h3>
+                <h4><i>$</i>159<i>.99</i>
+                <span>
+                Per Year </span>
+                </h4>
+              </div>
+              <ul className="pricing-content list-unstyled">
+                <li>
+                  At vero eos
+                </li>
+                <li>
+                  No Support
+                </li>
+                <li>
+                  Fusce condimentum
+                </li>
+                <li>
+                  Ut non libero
+                </li>
+                <li>
+                  Consecte adiping elit
+                </li>
+              </ul>
+              <div className="pricing-footer">
+                <p>
+                   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut non libero magna psum olor .
+                </p>
+                <a href="javascript:;" className="btn yellow-crusta">
+                Sign Up
+                </a>
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
+    </div>
     )
   }
 };
