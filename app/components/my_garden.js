@@ -30,9 +30,7 @@ export default class MyGarden extends Component{
 
   loadVegetables(){
     axios.get('/api/user-veg').then((response) => {
-      console.log(response);
-      let gardenData = response.data.Garden;
-      
+      let gardenData = response.data.Garden;  
       if(gardenData){
         
         let vegetables = gardenData.map((vegetable) => {
@@ -86,7 +84,6 @@ export default class MyGarden extends Component{
           )
 
         })
-      
         this.setState({ myVegetablesList: vegetables, gardenData: gardenData });
       }
     })
@@ -105,7 +102,7 @@ export default class MyGarden extends Component{
       return (
         <div>
 
-        < Calendar gardenData={ this.state.gardenData }  />
+        <Calendar gardenData={ this.state.gardenData }  />
 
           <div id="my-garden" className="container">
             <div className="row">

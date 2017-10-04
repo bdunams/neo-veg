@@ -79,7 +79,11 @@ const AboutUs = () =>{
 						<div className="row">
 							<div className="col-lg-12 text-center">
 								<h1 className="section-heading" id="aboutSection">Our Mission</h1>
-								<h3 className="section-subheading text-muted aboutSectionSub" id="aboutSectionSub">Provide an enjoyable gardening experience and change the world!</h3>
+								<p className="aboutSection">
+								It is our mission to provide the best gardening experience! We believe vegetables are essential to everyone's dietary needs.
+								 <br/>
+								 
+								</p>
 							</div>
 						</div>
 					</div>
