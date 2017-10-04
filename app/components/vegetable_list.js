@@ -17,7 +17,10 @@ export default class Vegetable extends Component{
   handleAddToGarden(event){
     event.preventDefault();
     
-    axios.post('/api/add-to-garden', {vegetableName: event.target.VegName.value})
+    axios.post('/api/add-to-garden', {
+      vegetableName: event.target.VegName.value,
+      vegId : event.target.vegId.value
+    })
       .then((data) => { console.log(data)} );
   }
   
@@ -39,6 +42,7 @@ export default class Vegetable extends Component{
               <h4>{vegetable.VegName}</h4>
               <form method="post" onSubmit={this.handleAddToGarden}>
                 <input type="hidden" name="VegName" value={vegetable.VegName} />
+                <input type="hidden" name="vegId" value={vegetable._id}/>
                 <button type="submit" className="btn btn-success imageButton">+</button>
                 <button type="submit" className="btn btn-danger imageButtonNegative">x</button>
               </form>
