@@ -13,14 +13,23 @@ export default class MyGarden extends Component{
   constructor(props){
     super(props)
     
-    this.state = {calData: ""}
+    this.state = {
+      calData: {
+        events : null
+      }
+    }
   }
-  
-  // Will run right before mounting component
-  componentWillMount(){
 
+  componentWillReceiveProps(nextProps){
+    this.getData(nextProps.gardenData);
+  }
+
+  getData( newProps ) {
     let calData = [];
-    this.props.gardenData.forEach(function(item){
+
+    newProps = newProps ? newProps : this.props.gardenData;
+
+    newProps.forEach(function(item){
 
       calData[item.VegName] = [];
 
@@ -71,13 +80,26 @@ export default class MyGarden extends Component{
       })
     });
 
-    this.setState({calData: {events:calData}});
+    this.setState({
+      calData: {
+        events:calData
+      }
+    });
+  }
+  
+  // Will run right before mounting component
+  componentWillMount(){
+      this.getData();
+  }
 
+  componentWillUpdate(nextProps, nextState){
+    $("#calendar").fullCalendar('destroy');
+    $('#calendar').fullCalendar(nextState.calData);        
   }
 
   componentDidMount(){
-    console.log(this.state.calData)
-     $('#calendar').fullCalendar(this.state.calData);
+      $("#calendar").replaceWith("<div id='calendar'></div>");
+      $('#calendar').fullCalendar(this.state.calData);    
   }
 
 
