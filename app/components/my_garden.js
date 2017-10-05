@@ -52,7 +52,7 @@ export default class MyGarden extends Component{
 
           return(
             // <Vegetable id={vegetable.id} image={vegetable.image} >
-            <div key={vegetable._id} className="col-md-4">
+            <div key={vegetable._id} id="vegCard" className="col-md-4">
                 <img src={imageUrl} className="img-responsive2" />
 
                 <h3>{vegetable.VegName}</h3>
