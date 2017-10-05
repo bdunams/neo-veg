@@ -145,6 +145,10 @@
 	width: 96%; 
 }
 
+.modal {
+	top: 180px;
+}
+
 
 .service-item {
 	cursor: pointer;
@@ -525,8 +529,8 @@ background: url(../images/vegetables.png) fixed;
   	-webkit-background-size: cover;
   	-moz-background-size: cover;
   	-o-background-size: cover;
-  	background-size: cover;
-    background-position: center center;
+  	background-size: 100% auto;
+    background-position: top center;
     background-repeat: no-repeat;
 }
 
