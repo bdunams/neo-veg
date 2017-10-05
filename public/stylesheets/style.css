@@ -86,6 +86,11 @@
 	background-color: transparent;
 	background-image: none!important;
 }
+
+.img-fluid {
+	width: 100%;
+}
+
 .header .navbar-brand {
     font-weight: 900;
 }
@@ -110,13 +115,10 @@
 	background-color: #57c300;
 }
 
-<<<<<<< HEAD
 /* .navbar-toggler-icon{
 
 } */
 
-=======
->>>>>>> 551c13aeba52b9810d1cc167603bb5c436a9f50c
 
 .imageButton {
   display:block;
