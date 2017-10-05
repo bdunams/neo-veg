@@ -106,7 +106,7 @@ export default class MyGarden extends Component{
   // Render Component
   render() {
     return (
-      <div className="container-fluid">
+      <div className="container-fluid calendarStyle">
         <div id='calendar'></div>
       </div>
     )
