@@ -76,7 +76,7 @@ export default class MyGarden extends Component{
 
                 <form method="post" onSubmit={this.handleRemoveFromGarden.bind(this)}>
                   <input type="hidden" name="_id" value={vegetable._id} />
-                  <button type="submit" className="btn btn-danger"></button>
+                  <button type="submit" className="btn btn-danger imageButtonNegative">x</button>
                 </form>
 
               <hr />

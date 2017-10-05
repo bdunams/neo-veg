@@ -15,12 +15,12 @@ const AboutUs = () =>{
 								<h3 className="section-subheading text-muted aboutSectionSub" id="aboutSectionSub">We are Your Personal Garden Assistant</h3>
 
 								<p className="aboutSection">
-								At NEOVEG, we value your vegetables. As for fruits… we’re getting there. 
-
-								NEOVEG gives you the optimum milestone reminders to ensure your vegetables are given the proper care they require.
+								At NEOVEG, we value your vegetables. NEOVEG gives you the optimum milestone reminders to ensure your vegetables are given the care they require.
 								 From seeding to harvesting, we provide a reminder system for each vegetable that you add to “MyGarden”. 
 								 Once you add a vegetable to MyGarden, it is automatically added to your calendar which is preset with dates for optimal VegCare™. 
 								 Now you can finally plant your garden and have the peace of mind knowing you will never forget an important date in your #VegLife. 
+								 <br/>
+								 As for fruits… we’re getting there.
 								</p>
 							</div>
 						</div>
@@ -79,7 +79,11 @@ const AboutUs = () =>{
 						<div className="row">
 							<div className="col-lg-12 text-center">
 								<h1 className="section-heading" id="aboutSection">Our Mission</h1>
-								<h3 className="section-subheading text-muted aboutSectionSub" id="aboutSectionSub">Provide an enjoyable gardening experience and change the world!</h3>
+								<p className="aboutSection">
+								It is our mission to provide the best gardening experience! We believe vegetables are essential to everyone's dietary needs.
+								 <br/>
+								 
+								</p>
 							</div>
 						</div>
 					</div>
