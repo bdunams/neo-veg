@@ -86,6 +86,11 @@
 	background-color: transparent;
 	background-image: none!important;
 }
+
+.img-fluid {
+	width: 100%;
+}
+
 .header .navbar-brand {
     font-weight: 900;
 }
@@ -109,6 +114,10 @@
 .navbar-inverse .navbar-toggle:hover, .navbar-inverse .navbar-toggle:focus {
 	background-color: #57c300;
 }
+
+/* .navbar-toggler-icon{
+
+} */
 
 
 .imageButton {
