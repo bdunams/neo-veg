@@ -228,6 +228,9 @@
 	padding-top: 2em;
 }
 
+#vegCard {
+	margin-bottom: 65px;
+}
 
 @media (min-width: 768px) {
     .header .navbar-brand {
