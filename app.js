@@ -55,9 +55,11 @@ app.use(function(req, res, next) {
 	var Veg = require("./models/veg.js");
 
 // MONGODB CONFIGURATION//
-	mongoose.connect("mongodb://localhost/neoveg", {
+	mongoose.connect("mongodb://heroku_mgttgtwr:l51l75o0rctpnla8npkq02tdd@ds111535.mlab.com:11535/heroku_mgttgtwr", {
 		useMongoClient: true
 	});
+	// Dev mongodb://localhost/neoveg
+	// Prod mongodb://heroku_mgttgtwr:l51l75o0rctpnla8npkq02tdd@ds111535.mlab.com:11535/heroku_mgttgtwr
 	var db = mongoose.connection;
 
 	db.on("error", function(err) {
