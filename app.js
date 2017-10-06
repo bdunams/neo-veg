@@ -5,10 +5,8 @@
 	var logger = require('morgan');
 	var cookieParser = require('cookie-parser');
 	var bodyParser = require('body-parser');
-	var logger = require("morgan");
 	var mongoose = require("mongoose");
 	var passport = require('passport');
-	
     const session = require('express-session');
     
   // App Authentication (Google OAuth 2.0)

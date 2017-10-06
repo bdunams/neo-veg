@@ -72,7 +72,11 @@ export default class Vegetable extends Component{
     if(this.state.vegetablesList.length > 0){
       return (
         <div id="all-plants" className="container">
+          <div id="signInMessage" className="row">
+            <p>Sign in to add vegetables to your garden!</p>
+          </div>
           <div className="row">
+
             {this.state.vegetablesList}
           </div>
         </div>
