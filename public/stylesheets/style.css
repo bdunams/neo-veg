@@ -236,6 +236,16 @@
 	padding-top: 2em;
 }
 
+#signInMessage {
+	font-size: 20px;
+	font-weight: bold;
+	text-align: center;
+}
+
+#signInMessage p {
+	margin: 0 auto;
+	padding-bottom: 10px;
+}
 
 .calendarStyle {
 	padding-top: 2em;
