@@ -43,11 +43,11 @@ export default class Vegetable extends Component{
               <form method="post" onSubmit={this.handleAddToGarden}>
                 <input type="hidden" name="VegName" value={vegetable.VegName} />
                 <input type="hidden" name="vegId" value={vegetable._id}/>
-                <button type="submit" className="btn btn-success imageButton" data-toggle="modal" data-target={ "#" + vegetable.VegName}>+</button>
+                <button type="submit" className="btn btn-success imageButton" data-toggle="modal" data-target={ "#" + vegetable.VegName.split(' ')[0]}>+</button>
 
               </form>
 
-              <div className="modal fade" id={vegetable.VegName} tabIndex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+              <div className="modal fade" id={vegetable.VegName.split(' ')[0]} tabIndex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
                 <div className="modal-dialog modal-sm">
                   <div className="modal-content">
                     Added {vegetable.VegName} to your garden!
