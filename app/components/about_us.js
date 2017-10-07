@@ -79,19 +79,15 @@ const AboutUs = () =>{
 						<div className="row">
 							<div className="col-lg-12 text-center">
 								<h1 className="section-heading" id="aboutSection">Our Mission</h1>
-								<p className="aboutSection">
-								It is our mission to provide the best gardening experience! We believe vegetables are essential to everyone's dietary needs.
-								 <br/>
-								 
-								</p>
+								<h4 className="aboutSection" id="aboutSectionSub">
+								It is our mission to provide the best, easiest, and most comprehensive gardening experience for all Northeast Ohio and surrounding areas! 
+								</h4>
 							</div>
 						</div>
 					</div>
 			</section>
 		</div>
-
     </div>
-
   )
 }
 

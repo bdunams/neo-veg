@@ -39,7 +39,7 @@ export default class Vegetable extends Component{
           return(
             <div key={vegetable._id} className="col-md-4 col-sm-2 wrapper vegetables-list">
               <img src={imageUrl} className="img-responsive veggieImage" />
-              <h4>{vegetable.VegName}</h4>
+              <h4 className="vegNameStyle">{vegetable.VegName}</h4>
               <form method="post" onSubmit={this.handleAddToGarden}>
                 <input type="hidden" name="VegName" value={vegetable.VegName} />
                 <input type="hidden" name="vegId" value={vegetable._id}/>
