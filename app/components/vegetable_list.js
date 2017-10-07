@@ -37,7 +37,7 @@ export default class Vegetable extends Component{
           let imageUrl = `images/${vegetable.VegName}.jpg`;
           
           return(
-            <div key={vegetable._id} className="col-md-4 col-sm-2 wrapper">
+            <div key={vegetable._id} className="col-md-4 col-sm-2 wrapper vegetables-list">
               <img src={imageUrl} className="img-responsive veggieImage" />
               <h4>{vegetable.VegName}</h4>
               <form method="post" onSubmit={this.handleAddToGarden}>

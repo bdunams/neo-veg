@@ -20,8 +20,8 @@ const CenterPiece = () =>{
 
               <div className="carousel-caption d-md-block carouselButton">
                   <p className="titleCarousel">Your Personal Garden Assistant</p>
-                  <div class="primary-button herobutton">
-                            <a href="browseAll.html" class="scroll-link" data-id="about">Learn More</a>
+                  <div className="primary-button herobutton">
+                            <a href="browseAll.html" className="scroll-link" data-id="about">Learn More</a>
                   </div>
               </div>
           </div>
@@ -29,8 +29,8 @@ const CenterPiece = () =>{
             <img className="d-block img-fluid" src="images/slide_02.jpg" alt="Second slide" />
             <div className="carousel-caption d-md-block carouselButton">
                   <p className="titleCarousel">AVAILABLE YEAR ROUND</p>
-                  <div class="primary-button herobutton">
-                            <a href="browseAll.html" class="scroll-link" data-id="about">Learn More</a>
+                  <div className="primary-button herobutton">
+                            <a href="browseAll.html" className="scroll-link" data-id="about">Learn More</a>
                   </div>
               </div>
           </div>
@@ -38,8 +38,8 @@ const CenterPiece = () =>{
             <img className="d-block img-fluid" src="images/slide_03.jpg" alt="Third slide" />
             <div className="carousel-caption d-md-block carouselButton">
                   <p className="titleCarousel">BUILD YOUR OWN GARDEN</p>
-                  <div class="primary-button herobutton">
-                            <a href="browseAll.html" class="scroll-link" data-id="about">Learn More</a>
+                  <div className="primary-button herobutton">
+                            <a href="browseAll.html" className="scroll-link" data-id="about">Learn More</a>
                   </div>
               </div>
           </div>

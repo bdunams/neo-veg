@@ -158,6 +158,9 @@
 	top: 180px;
 }
 
+#top-vegetables {
+	display: flex;
+}
 
 .service-item {
 	cursor: pointer;
@@ -236,10 +239,20 @@
 	padding-top: 2em;
 }
 
+.vegetables-list{
+	cursor: pointer;
+	background-color: #fff;
+	text-align: center;
+	padding: 30px 20px;
+	transition: all 0.7s;
+	box-shadow: 0px 0px 15px #cdcdcd;
+}
+
 #signInMessage {
 	font-size: 20px;
 	font-weight: bold;
 	text-align: center;
+	padding: 20px;
 }
 
 #signInMessage p {
@@ -360,7 +373,8 @@ background: url(../images/vegetables.png) fixed;
 	font-size: 220%;
 }
 .veggieImage {
-	width: 98%;
+	width: 90%;
+	margin-bottom: 5px;
 }
 
 .team-member {
