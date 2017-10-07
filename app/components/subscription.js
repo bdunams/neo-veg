@@ -47,7 +47,7 @@ export default class Subscription extends Component{
                    Give it a try! You have nothing to lose. 
                 </p>
                 <a href="javascript:;" className="btn yellow-crusta">
-                Sign Up
+                Sign Up Now
                 </a>
               </div>
             </div>
@@ -71,21 +71,15 @@ export default class Subscription extends Component{
                   Milestone Reminders
                 </li>
                 <li>
-                  Fusce condimentum
-                </li>
-                <li>
-                  Ut non libero
-                </li>
-                <li>
-                  Consecte adiping elit
+                  Seed delivery of up to 3 subscribed vegetables
                 </li>
               </ul>
               <div className="pricing-footer">
                 <p>
                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut non libero magna psum olor .
                 </p>
-                <a href="javascript:;" className="btn yellow-crusta">
-                Sign Up
+                <a href="javascript:;" className="btn yellow-crusta disabled">
+                Coming Soon
                 </a>
               </div>
             </div>
@@ -103,27 +97,24 @@ export default class Subscription extends Component{
               </div>
               <ul className="pricing-content list-unstyled">
                 <li>
-                  At vero eos
+                  Calendar Access
                 </li>
                 <li>
-                  No Support
+                  Milestone Reminders
                 </li>
                 <li>
-                  Fusce condimentum
+                  Seed delivery of up to 12 subscribed vegetables
                 </li>
                 <li>
-                  Ut non libero
-                </li>
-                <li>
-                  Consecte adiping elit
+                  Free starter kit with Grow Guide
                 </li>
               </ul>
               <div className="pricing-footer">
                 <p>
                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut non libero magna psum olor .
                 </p>
-                <a href="javascript:;" className="btn yellow-crusta">
-                Sign Up
+                <a href="javascript:;" className="btn yellow-crusta disabled">
+                Coming Soon
                 </a>
               </div>
             </div>
