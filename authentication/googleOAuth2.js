@@ -15,7 +15,7 @@ let GOOGLE_CLIENT_SECRET = '_cWF3jRTdI4XWYN_NU3s81gl';
 passport.use(new GoogleStrategy({
     clientID: GOOGLE_CLIENT_ID,
     clientSecret: GOOGLE_CLIENT_SECRET,
-    callbackURL: "http://localhost:8080/auth/google/callback"
+    callbackURL: "https://polar-savannah-52854.herokuapp.com/auth/google/callback"
   },
   function(accessToken, refreshToken, profile, done) {
   
