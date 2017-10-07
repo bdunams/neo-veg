@@ -19,8 +19,8 @@ export default class Subscription extends Component{
     
     return(
         <div id="subscription" className="container">
-            <h2>Start your subscription today!</h2>
-            <h3>Some marketing and a chart</h3>
+            <h2 className="titleSubscription">Start your subscription today!</h2>
+            <h3 className="titleSub">Choose the gardening solution that fits your needs.</h3>
 
       <div className="container content">
         <div className="row">
@@ -47,7 +47,7 @@ export default class Subscription extends Component{
                    Give it a try! You have nothing to lose. 
                 </p>
                 <a href="javascript:;" className="btn yellow-crusta">
-                Sign Up
+                Sign In
                 </a>
               </div>
             </div>
@@ -71,18 +71,15 @@ export default class Subscription extends Component{
                   Milestone Reminders
                 </li>
                 <li>
-                  Fusce condimentum
+                  Starter Kit - Gardening Essentials
                 </li>
                 <li>
-                  Ut non libero
-                </li>
-                <li>
-                  Consecte adiping elit
+                  Vegetable seed packs (7 pack limit)
                 </li>
               </ul>
               <div className="pricing-footer">
                 <p>
-                   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut non libero magna psum olor .
+                   Gardening essentials include: <br/>Hand-shovel, Plant food, and Gloves
                 </p>
                 <a href="javascript:;" className="btn yellow-crusta">
                 Sign Up
@@ -103,24 +100,27 @@ export default class Subscription extends Component{
               </div>
               <ul className="pricing-content list-unstyled">
                 <li>
-                  At vero eos
+                  Calendar Access
                 </li>
                 <li>
-                  No Support
+                  Milestone Reminders
                 </li>
                 <li>
-                  Fusce condimentum
+                  Seeds for All Vegetables in MyGarden Delivered when Seeding is Necessary
                 </li>
                 <li>
-                  Ut non libero
+                  Gardening Essentials
                 </li>
                 <li>
-                  Consecte adiping elit
+                  Fertilizer Delivered per Each Vegetable in MyGarden when Needed
+                </li>
+                <li>
+                  Vegetable Gardeners Handbook
                 </li>
               </ul>
               <div className="pricing-footer">
                 <p>
-                   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut non libero magna psum olor .
+                   <img className="homeImages" src="images/book.jpg"/>
                 </p>
                 <a href="javascript:;" className="btn yellow-crusta">
                 Sign Up
