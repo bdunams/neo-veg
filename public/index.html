@@ -119,6 +119,17 @@
             }
         });
 
+        $(window).resize(function(){
+            if ($(window).width() <= 992){  
+                $("body").css("background", "white");
+            } else {
+               $(".header").removeClass("active");
+               $("body").css("background", "url(\"../images/vegetables.png\") fixed top center / cover no-repeat white ");
+               $("body").css("background-size", "100% auto");
+            }
+
+        });
+
 });
 
 </script>

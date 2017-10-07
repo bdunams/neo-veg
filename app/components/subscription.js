@@ -19,8 +19,8 @@ export default class Subscription extends Component{
     
     return(
         <div id="subscription" className="container">
-            <h2>Start your subscription today!</h2>
-            <h3>Some marketing and a chart</h3>
+            <h2 className="titleSubscription">Start your subscription today!</h2>
+            <h3 className="titleSub">Choose the gardening solution that fits your needs.</h3>
 
       <div className="container content">
         <div className="row">
@@ -71,12 +71,15 @@ export default class Subscription extends Component{
                   Milestone Reminders
                 </li>
                 <li>
-                  Seed delivery of up to 3 subscribed vegetables
+                  Starter Kit - Gardening Essentials
+                </li>
+                <li>
+                  Vegetable seed packs (7 pack limit)
                 </li>
               </ul>
               <div className="pricing-footer">
                 <p>
-                   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut non libero magna psum olor .
+                   Gardening essentials include: <br/>Hand-shovel, Plant food, and Gloves
                 </p>
                 <a href="javascript:;" className="btn yellow-crusta disabled">
                 Coming Soon
@@ -103,15 +106,21 @@ export default class Subscription extends Component{
                   Milestone Reminders
                 </li>
                 <li>
-                  Seed delivery of up to 12 subscribed vegetables
+                  Seeds for All Vegetables in MyGarden Delivered when Seeding is Necessary
                 </li>
                 <li>
-                  Free starter kit with Grow Guide
+                  Gardening Essentials
+                </li>
+                <li>
+                  Fertilizer Delivered per Each Vegetable in MyGarden when Needed
+                </li>
+                <li>
+                  Vegetable Gardeners Handbook
                 </li>
               </ul>
               <div className="pricing-footer">
                 <p>
-                   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut non libero magna psum olor .
+                   <img className="homeImages" src="images/book.jpg"/>
                 </p>
                 <a href="javascript:;" className="btn yellow-crusta disabled">
                 Coming Soon
