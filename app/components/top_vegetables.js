@@ -9,7 +9,7 @@ export default class TopVegetables extends Component{
 
   // Here we render component
   render() {
-    return (
+    return ( 
 
         <div className="container text-center" id="top-vegetables">
           <div className="col-md-3 col-sm-6 col-xs-12 cardSpacing">
