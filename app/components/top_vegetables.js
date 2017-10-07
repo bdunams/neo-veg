@@ -36,7 +36,7 @@ export default class TopVegetables extends Component{
           <div className="col-md-3 col-sm-6 col-xs-12 cardSpacing">
               <div className="service-item fourth-service">
                   <div className='floated_img'><img className="homeImages" src="images/Radishes.jpg"/></div>
-                  <p><strong>Sign-up now for the fulle NEOVEG experience.</strong></p>
+                  <p><strong>Sign-up now for the full NEOVEG experience.</strong></p>
               </div>
           </div>           
         </div>
