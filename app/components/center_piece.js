@@ -46,7 +46,7 @@ const CenterPiece = () =>{
         </div>
       </div>
 
-      < TopVegetables />
+      <TopVegetables />
     </div>
   )
 }
