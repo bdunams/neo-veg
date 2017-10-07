@@ -374,9 +374,11 @@ background: url(../images/vegetables.png) fixed;
 	padding-top: 80px;
 	font-weight: 900;
 }
-.aboutSectionSub {
+#aboutSectionSub {
 	padding:10px;
 	font-size: 220%;
+	color: gray;
+	line-height: 1.5em;
 }
 .veggieImage {
 	width: 90%;
