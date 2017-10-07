@@ -11,7 +11,7 @@ export default class TopVegetables extends Component{
   render() {
     return (
 
-        <div className="container text-center flex">
+        <div className="container text-center" id="top-vegetables">
           <div className="col-md-3 col-sm-6 col-xs-12 cardSpacing">
               <div className="service-item first-service ">
                   <div className='floated_img'><img className="homeImages" src="images/Beets.jpg"/></div>
