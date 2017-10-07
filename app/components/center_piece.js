@@ -21,7 +21,7 @@ const CenterPiece = () =>{
               <div className="carousel-caption d-md-block carouselButton">
                   <p className="titleCarousel">Your Personal Garden Assistant</p>
                   <div className="primary-button herobutton">
-                            <a href="browseAll.html" className="scroll-link" data-id="about">Learn More</a>
+                            <a href="/vegetables" className="scroll-link" data-id="about">Learn More</a>
                   </div>
               </div>
           </div>
@@ -30,7 +30,7 @@ const CenterPiece = () =>{
             <div className="carousel-caption d-md-block carouselButton">
                   <p className="titleCarousel">AVAILABLE YEAR ROUND</p>
                   <div className="primary-button herobutton">
-                            <a href="browseAll.html" className="scroll-link" data-id="about">Learn More</a>
+                            <a href="/about-us" className="scroll-link" data-id="about">Learn More</a>
                   </div>
               </div>
           </div>
@@ -39,7 +39,7 @@ const CenterPiece = () =>{
             <div className="carousel-caption d-md-block carouselButton">
                   <p className="titleCarousel">BUILD YOUR OWN GARDEN</p>
                   <div className="primary-button herobutton">
-                            <a href="browseAll.html" className="scroll-link" data-id="about">Learn More</a>
+                            <a href="/subscription" className="scroll-link" data-id="about">Learn More</a>
                   </div>
               </div>
           </div>

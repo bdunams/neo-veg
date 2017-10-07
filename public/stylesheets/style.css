@@ -159,7 +159,8 @@
 }
 
 #top-vegetables {
-	display: flex;
+	overflow-x: auto;
+    display: -webkit-box;
 }
 
 .service-item {
